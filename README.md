@@ -2,6 +2,12 @@
 
 This is a template for react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup, I'm still learning many of these tools and don't know how I feel about all of them yet.
 
+# Setup
+
+1. Clone the repo
+2. `cd <repo path>`
+3. `npm install`
+
 # Technologies
 
 ## App
