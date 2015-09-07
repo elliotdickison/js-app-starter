@@ -1,6 +1,6 @@
 # React Boilerplate
 
-This is a template for react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup, I'm still learning many of these tools and don't know how I feel about all of them yet.
+This is a template for react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet.
 
 # Setup
 
