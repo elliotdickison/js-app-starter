@@ -27,7 +27,8 @@ This is a template for react web applications. This is very much a work in progr
 
 # Future Plans
 
-* Isomorphic rendering
+* Documentation (sheesh, why isn't this done already!?)
+* Koa?
 * Add react router and a couple views
 * Add styles (sass, radium?)
 * Try out webpack

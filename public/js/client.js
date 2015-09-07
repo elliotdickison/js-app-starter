@@ -25579,7 +25579,7 @@ exports['default'] = _react2['default'].createClass({
             widgetListItems,
             _react2['default'].createElement(
                 'li',
-                { className: '' },
+                { className: 'widget-form' },
                 _react2['default'].createElement('input', { type: 'text', ref: 'newWidgetName' }),
                 _react2['default'].createElement('input', { type: 'button', value: 'Build', onClick: this.onBuildWidgetClick })
             )
@@ -25604,7 +25604,7 @@ var _componentsAppJs = require('./components/app.js');
 
 var _componentsAppJs2 = _interopRequireDefault(_componentsAppJs);
 
-_react2['default'].render(_react2['default'].createElement(_componentsAppJs2['default'], null), document.body);
+_react2['default'].render(_react2['default'].createElement(_componentsAppJs2['default'], null), document.getElementById('app'));
 
 },{"./components/app.js":361,"babelify/polyfill":183,"react":340}],365:[function(require,module,exports){
 'use strict';
