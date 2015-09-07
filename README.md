@@ -7,6 +7,9 @@ This is a template for react web applications. This is very much a work in progr
 1. Clone the repo
 2. `cd <repo path>`
 3. `npm install`
+4. `gulp`
+5. `node src/server.js`
+6. Visit `http://localhost:3000/`
 
 # Technologies
 
