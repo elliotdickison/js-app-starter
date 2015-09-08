@@ -22,7 +22,7 @@ gulp.task('browserify', function(){
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('default', ['browserify']);
+gulp.task('default', ['lint', 'browserify']);
 
 gulp.task('watch', function(){
     gulp.watch('src/**/*.*', ['default']);
