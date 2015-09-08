@@ -35,3 +35,4 @@ This is a template for react web applications. This is very much a work in progr
 * Add react router and a couple views
 * Add styles (sass, radium?)
 * Try out webpack
+* Stuff it all into a Yoeman generator w/ some handy-dandy options
