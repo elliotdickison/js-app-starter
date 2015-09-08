@@ -1,5 +1,5 @@
 import 'babelify/polyfill';
 import React from 'react';
-import App from './components/app.js';
+import Base from './components/base.js';
 
-React.render(<App />, document.getElementById('app'));
+React.render(<Base />, document.getElementById('content'));

@@ -1,30 +1,30 @@
 require('babelify/node_modules/babel-core/register');
 
 var React = require('react');
-var App = require('./components/app.js');
+var Base = require('./components/base.js');
 
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
 
-var AppFactory = React.createFactory(App);
-var renderedApp = React.renderToString(
-    AppFactory({done: false, name: 'Write Tutorial'})
+var BaseFactory = React.createFactory(Base);
+var renderedContent = React.renderToString(
+    BaseFactory({done: false, name: 'Write Tutorial'})
 );
 
 var indexHtml = fs.readFileSync(path.join(__dirname, '/index.html')).toString();
-indexHtml = indexHtml.replace('{{renderedApp}}', renderedApp);
+indexHtml = indexHtml.replace('{{renderedContent}}', renderedContent);
 
-var server = express();
+var app = express();
 
-server.use(express.static(path.join(__dirname,  '/../public')));
+app.use(express.static(path.join(__dirname,  '/../public')));
 
-server.get('/', function(req, res) {
+app.get('/', function(req, res) {
   res.send(indexHtml);
 });
 
-server.listen(3000, function() {
+app.listen(3000, function() {
     console.log("Listening on port 3000");
 });
 
-module.exports = server;
+module.exports = app;
