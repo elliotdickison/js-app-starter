@@ -5,11 +5,12 @@ This is a template for react web applications. This is very much a work in progr
 # Setup
 
 1. Clone the repo
-2. `cd <repo path>`
-3. `npm install`
-4. `gulp`
-5. `node src/server.js`
-6. Visit `http://localhost:3000/`
+2. `cd` into the repo base directory
+3. Run `npm install` to install dependencies
+4. Run `gulp` to build assets
+5. Run `mocha` to test
+6. Run `node src/server.js` to start a server
+7. Visit `http://localhost:3000/`
 
 # Technologies
 
@@ -31,7 +32,7 @@ This is a template for react web applications. This is very much a work in progr
 # Future Plans
 
 * Documentation (sheesh, why isn't this done already!?)
-* Koa?
+* Express => Koa?
 * Add react router and a couple views
 * Add styles (sass, radium?)
 * Try out webpack
