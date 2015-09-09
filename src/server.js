@@ -1,15 +1,15 @@
 require('babelify/node_modules/babel-core/register');
 
 var React = require('react');
-var Base = require('./components/base.js');
+var BaseComponent = require('./components/base.js');
 
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
 
-var BaseFactory = React.createFactory(Base);
+var BaseComponentFactory = React.createFactory(BaseComponent);
 var renderedContent = React.renderToString(
-    BaseFactory({done: false, name: 'Write Tutorial'})
+    BaseComponentFactory({done: false, name: 'Write Tutorial'})
 );
 
 var indexHtml = fs.readFileSync(path.join(__dirname, '/index.html')).toString();
@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
 });
 
 app.listen(3000, function() {
-    console.log("Listening on port 3000");
+    console.log("Listening on port 3000.");
 });
 
 module.exports = app;
