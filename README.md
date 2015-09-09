@@ -2,7 +2,7 @@
 
 This is a template for isomorphic react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet*.
 
-\* Except for React and Redux, which are the cat's pajamas, the bee's knees, and the future of the web.
+\* Except for React and Redux, which are the cat's pajamas and the dog's galoshes.
 
 # Setup
 
@@ -11,8 +11,7 @@ This is a template for isomorphic react web applications. This is very much a wo
 3. Run `npm install` to install dependencies
 4. Run `gulp` to build assets
 5. Run `mocha` to test
-6. Run `node server` to start a server
-7. Visit `http://localhost:3000/`
+6. Run `node server` to start
 
 # Technologies
 
