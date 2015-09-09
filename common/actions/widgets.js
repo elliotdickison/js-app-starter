@@ -1,3 +1,5 @@
+import { buildWidget } from '../api/widgets';
+
 export const BUILD_WIDGET = 'BUILD_WIDGET';
 export const DESTROY_WIDGET = 'DESTROY_WIDGET';
 
@@ -15,10 +17,10 @@ export function destroy (index) {
     };
 }
 
-export function asyncBuild(data, delay = 1000) {
+export function asyncBuild(data) {
     return dispatch => {
-        setTimeout(() => {
-            dispatch(build(data));
-        }, delay);
+        buildWidget(data, (apiResponse) => {
+            dispatch(build(apiResponse));
+        });
     };
 }
