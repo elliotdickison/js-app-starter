@@ -5,7 +5,7 @@ var browserify = require('gulp-browserify');
 var uglify = require('gulp-uglify');
 
 gulp.task('lint', function(){
-    gulp.src('src/**/*.js')
+    gulp.src(['common/**/*.js', 'client/**/*.js', 'server/**/*.js'])
         .pipe(jshint({
             linter: jsxhint,
             esnext: true,
@@ -14,12 +14,12 @@ gulp.task('lint', function(){
 });
 
 gulp.task('browserify', function(){
-    gulp.src('src/client.js')
+    gulp.src('client/index.js')
         .pipe(browserify({
             transform: 'babelify',
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('public/js'));
+        .pipe(gulp.dest('public/js/'));
 });
 
 gulp.task('default', ['lint', 'browserify']);

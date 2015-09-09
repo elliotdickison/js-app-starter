@@ -1,6 +1,8 @@
 # React Boilerplate
 
-This is a template for react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet.
+This is a template for isomorphic react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet*.
+
+* Except for React and Redux, which are the cat's pajamas, the bee's knees, and the future of the web.
 
 # Setup
 
@@ -16,7 +18,7 @@ This is a template for react web applications. This is very much a work in progr
 
 ## App
 * [React](http://facebook.github.io/react/)
-* [Reflux](https://github.com/reflux/refluxjs)
+* [Redux](https://github.com/rackt/redux)
 
 ## Build
 * [npm](https://www.npmjs.com/)

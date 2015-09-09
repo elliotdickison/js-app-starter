@@ -1,17 +1,18 @@
 import { expect } from 'chai';
 import TestDom from '../test-dom';
 import React from 'react/addons';
-import WidgetList from '../../src/components/widget-list';
+import WidgetList from '../../common/components/widget-list';
 
 TestDom.init();
 var TestUtils = React.addons.TestUtils;
+var noop = () => null
 
 describe('WidgetList component', function(){
     before('render and locate element', function() {
         var renderedComponent = TestUtils.renderIntoDocument(
-            <WidgetList />
+            <WidgetList build={noop} asyncBuild={noop} destroy={noop} widgets={[]} />
         );
-        this.renderedElement = renderedComponent.getDOMNode();
+        this.renderedElement = React.findDOMNode(renderedComponent);
     });
 
     it('is a list', function() {
