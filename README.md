@@ -11,7 +11,7 @@ This is a template for isomorphic react web applications. This is very much a wo
 3. Run `npm install` to install dependencies
 4. Run `gulp` to build assets
 5. Run `mocha` to test
-6. Run `node src/server.js` to start a server
+6. Run `node server` to start a server
 7. Visit `http://localhost:3000/`
 
 # Technologies
