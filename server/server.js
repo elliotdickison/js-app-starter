@@ -14,22 +14,23 @@ const port = 3000;
 
 app.use(Express.static(path.join(__dirname, '../public')));
 
-app.use(function (req, res) {
-    fetchAllWidgets( function (apiResult) {
-        const widgets = apiResult || [];
-        const initialState = { widgets };
+app.use( (req, res) => {
+    fetchAllWidgets( (apiResult) => {
+        const initialState = { widgets: apiResult || [] };
         const store = configureStore(initialState);
+
         const html = React.renderToString(
             <Provider store={store}>
                 { () => <App/> }
             </Provider>
         );
         const state = store.getState();
+
         res.send(renderPage(html, state));
     });
 });
 
-app.listen(port, function (error) {
+app.listen(port, (error) => {
     if (error) {
         console.error(error);
     } else {
@@ -37,7 +38,7 @@ app.listen(port, function (error) {
     }
 });
 
-function renderPage(html, state) {
+function renderPage (html, state) {
     return fs
         .readFileSync(path.join(__dirname, '/index.html'))
         .toString()

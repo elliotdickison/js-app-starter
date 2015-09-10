@@ -16,7 +16,7 @@ class WidgetList extends Component {
     }
 
     render () {
-        var widgetListItems = this.props.widgets.map( (widget, index) => {
+        const widgetListItems = this.props.widgets.map( (widget, index) => {
             return <WidgetListItem key={index} widget={widget} index={index} destroy={this.props.destroy} />;
         });
         return (

@@ -1,11 +1,11 @@
 export function fetchAllWidgets (callback) {
-    setTimeout(function () {
+    setTimeout( () => {
         callback([{ name: "one" }, { name: "two" }]);
     }, 500);
 }
 
 export function buildWidget (data, callback) {
-    setTimeout(function () {
+    setTimeout( () => {
         callback(data);
     }, 500);
 }

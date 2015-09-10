@@ -1,4 +1,4 @@
-# React Boilerplate
+# JavaScript App Template
 
 This is a template for isomorphic react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet*.
 
@@ -33,11 +33,7 @@ This is a template for isomorphic react web applications. This is very much a wo
 # Future Plans
 
 * Documentation (sheesh, why isn't this done already!?)
-* Express => Koa?
 * Add react router and a couple views
 * Add styles (sass, radium?)
 * Try out webpack
-* Stuff it all into a Yoeman generator w/ some handy-dandy options
-* Consistently use the handy-dandy ES6 features afforded by babel
-    * let
-    * =>
+* Stuff it all into Yoeman w/ some handy-dandy generators and options

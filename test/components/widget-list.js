@@ -4,12 +4,12 @@ import React from 'react/addons';
 import WidgetList from '../../common/components/widget-list';
 
 TestDom.init();
-var TestUtils = React.addons.TestUtils;
-var noop = () => null
+const TestUtils = React.addons.TestUtils;
+const noop = () => null
 
 describe('WidgetList component', function(){
     before('render and locate element', function() {
-        var renderedComponent = TestUtils.renderIntoDocument(
+        const renderedComponent = TestUtils.renderIntoDocument(
             <WidgetList build={noop} asyncBuild={noop} destroy={noop} widgets={[]} />
         );
         this.renderedElement = React.findDOMNode(renderedComponent);

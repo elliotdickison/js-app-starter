@@ -17,8 +17,8 @@ export function destroy (index) {
     };
 }
 
-export function asyncBuild(data) {
-    return dispatch => {
+export function asyncBuild (data) {
+    return (dispatch) => {
         buildWidget(data, (apiResponse) => {
             dispatch(build(apiResponse));
         });
