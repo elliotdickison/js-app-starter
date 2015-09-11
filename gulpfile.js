@@ -8,6 +8,9 @@ var sass = require('gulp-sass');
 var shell = require('gulp-shell');
 
 var JS_GLOB = ['common/**/*.js', 'client/**/*.js', 'server/**/*.js'];
+var SASS_GLOB = 'client/styles/**/*.scss';
+var TEST_GLOB = 'test/components/**/*.js';
+var PUBLIC_DIR = 'public';
 
 gulp.task('lint-js', function(){
     gulp.src(JS_GLOB)
@@ -19,7 +22,7 @@ gulp.task('lint-js', function(){
 });
 
 gulp.task('test-js', function(){
-    gulp.src('test/components/**/*.js')
+    gulp.src(TEST_GLOB)
         .pipe(mocha({
             require: ['babelify/node_modules/babel-core/register'],
         }));
@@ -31,15 +34,15 @@ gulp.task('build-js', function(){
             transform: 'babelify',
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('public/js/'));
+        .pipe(gulp.dest(PUBLIC_DIR + '/js/'));
 });
 
 gulp.task('build-css', function () {
-    gulp.src('client/styles/**/*.scss')
+    gulp.src(SASS_GLOB)
         .pipe(sass({
             outputStyle: 'compressed',
         }))
-        .pipe(gulp.dest('public/css/'));
+        .pipe(gulp.dest(PUBLIC_DIR + '/css/'));
 });
 
 gulp.task('serve', shell.task([
