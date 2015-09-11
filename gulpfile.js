@@ -5,6 +5,7 @@ var browserify = require('gulp-browserify');
 var uglify = require('gulp-uglify');
 var mocha = require('gulp-mocha');
 var sass = require('gulp-sass');
+var shell = require('gulp-shell');
 
 var JS_GLOB = ['common/**/*.js', 'client/**/*.js', 'server/**/*.js'];
 
@@ -40,6 +41,10 @@ gulp.task('build-css', function () {
         }))
         .pipe(gulp.dest('public/css/'));
 });
+
+gulp.task('serve', shell.task([
+    'node server',
+]));
 
 gulp.task('test', ['lint-js', 'test-js']);
 
