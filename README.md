@@ -9,8 +9,8 @@ This is a template for isomorphic react web applications. This is very much a wo
 1. Clone the repo
 2. `cd` into the repo base directory
 3. Run `npm install` to install dependencies
-4. Run `gulp` to build assets
-5. Run `mocha` to test
+4. Run `gulp build` to build assets
+5. Run `gulp test` to test
 6. Run `node server` to start
 
 # Technologies
