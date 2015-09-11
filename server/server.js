@@ -42,6 +42,6 @@ function renderPage (html, state) {
     return fs
         .readFileSync(path.join(__dirname, '/index.html'))
         .toString()
-        .replace('${html}', html)
-        .replace('${state}', JSON.stringify(state));
+        .replace('{{html}}', html)
+        .replace('{{state}}', JSON.stringify(state));
 }
