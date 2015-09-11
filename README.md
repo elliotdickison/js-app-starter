@@ -34,6 +34,5 @@ This is a template for isomorphic react web applications. This is very much a wo
 
 * Documentation (sheesh, why isn't this done already!?)
 * Add react router and a couple views
-* Add styles (sass, radium?)
 * Try out webpack
 * Stuff it all into Yoeman w/ some handy-dandy generators and options
