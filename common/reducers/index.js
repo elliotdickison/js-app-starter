@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import widgets from './widgets';
 
 const rootReducer = combineReducers({
-    widgets
+    widgets,
 });
 
 export default rootReducer;

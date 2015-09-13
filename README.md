@@ -1,8 +1,8 @@
-# JavaScript App Template
+# JavaScript App Boilerplate
 
-This is a template for isomorphic react web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet*.
+This is a template for isomorphic/universal javascript web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet*.
 
-\* Except for React and Redux, which are the cat's pajamas and the dog's galoshes.
+\* Except for React and Redux, which are the cat's pajamas and the dog's galoshes, respectively.
 
 # Setup
 
@@ -33,6 +33,9 @@ This is a template for isomorphic react web applications. This is very much a wo
 # Future Plans
 
 * Documentation (sheesh, why isn't this done already!?)
-* Add react router and a couple views
 * Try out webpack
+* Research isomorphic/universal data fetching based on routes
 * Stuff it all into Yoeman w/ some handy-dandy generators and options
+* look at redux-react-router
+* Radium?
+* Koa?

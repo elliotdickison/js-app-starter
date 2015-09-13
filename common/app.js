@@ -1,16 +1,19 @@
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import WidgetList from './components/widget-list';
-import * as WidgetActions from './actions/widgets';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
-function mapStateToProps(state) {
-    return {
-        widgets: state.widgets
-    };
+class App extends Component {
+
+    render () {
+        return (
+            <div>
+                <Link to="/front">Front</Link>
+                <Link to="/widgets">Widgets</Link>
+                <div>
+                    {this.props.children}
+                </div>
+            </div>
+        );
+    }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(WidgetActions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WidgetList);
+export default App;

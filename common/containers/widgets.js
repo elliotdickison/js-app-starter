@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import WidgetListItem from './widget-list-item';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as WidgetActions from '../actions/widgets';
+import WidgetListItem from '../components/widget-list-item';
 
-class WidgetList extends Component {
+class Widgets extends Component {
 
     onBuildWidgetClick () {
         this.props.build({
@@ -22,7 +25,7 @@ class WidgetList extends Component {
         return (
             <ul>
                 {widgetListItems}
-                <li className="widget-form">
+                <li>
                     <input type="text" ref="newWidgetName" />
                     <input type="button" value="Build" onClick={this.onBuildWidgetClick.bind(this)} />
                     <input type="button" value="Async Build" onClick={this.onAsyncBuildWidgetClick.bind(this)} />
@@ -32,11 +35,21 @@ class WidgetList extends Component {
     }
 }
 
-WidgetList.propTypes = {
+Widgets.propTypes = {
     build: PropTypes.func.isRequired,
     asyncBuild: PropTypes.func.isRequired,
     destroy: PropTypes.func.isRequired,
     widgets: PropTypes.array.isRequired,
 };
 
-export default WidgetList;
+function mapStateToProps(state) {
+    return {
+        widgets: state.widgets
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(WidgetActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Widgets);
