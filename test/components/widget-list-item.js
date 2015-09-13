@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import TestDom from '../test-dom';
 import React from 'react/addons';
-import WidgetListItem from '../../common/components/widget-list-item';
+import WidgetListItem from '../../src/common/components/widget-list-item';
 
 TestDom.init();
 const TestUtils = React.addons.TestUtils;

@@ -7,8 +7,8 @@ var mocha = require('gulp-mocha');
 var sass = require('gulp-sass');
 var shell = require('gulp-shell');
 
-var JS_GLOB = ['common/**/*.js', 'client/**/*.js', 'server/**/*.js'];
-var SASS_GLOB = 'client/styles/**/*.scss';
+var JS_GLOB = ['src/common/**/*.js', 'src/client/**/*.js', 'src/server/**/*.js'];
+var SASS_GLOB = 'src/client/styles/**/*.scss';
 var TEST_GLOB = 'test/components/**/*.js';
 var PUBLIC_DIR = 'public';
 
@@ -46,7 +46,7 @@ gulp.task('build-css', function () {
 });
 
 gulp.task('serve', shell.task([
-    'node server',
+    'node src/server',
 ]));
 
 gulp.task('test', ['lint-js', 'test-js']);
