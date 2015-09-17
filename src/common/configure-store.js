@@ -9,6 +9,6 @@ const rootReducer = combineReducers({
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
-export default function configureStore(initialState) {
+export default function configureStore (initialState) {
     return createStoreWithMiddleware(rootReducer, initialState);
 }

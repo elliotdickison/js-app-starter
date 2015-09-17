@@ -1,14 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { actions as WidgetActions } from '../modules/widgets';
+import configureContainer from '../configure-container';
+import { actions } from '../modules/widgets';
 import WidgetListItem from '../components/widget-list-item';
 
 class Widgets extends Component {
-
-    componentDidMount () {
-        Widgets.fetchData(this.context.store);
-    }
 
     onBuildClick () {
         this.props.build({
@@ -53,16 +49,6 @@ Widgets.propTypes = {
     widgets: PropTypes.object.isRequired,
 };
 
-Widgets.contextTypes = {
-    store: React.PropTypes.object
-};
-
-Widgets.fetchData = (store) => {
-    if (!store.getState().widgets.loaded) {
-        return store.dispatch(WidgetActions.load());
-    }
-};
-
 function mapStateToProps(state) {
     return {
         widgets: state.widgets,
@@ -70,7 +56,14 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(WidgetActions, dispatch);
+    return bindActionCreators(actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Widgets);
+function fetchData (store) {
+    const state = store.getState();
+    if (!state.widgets.loaded && !state.widgets.loading) {
+        return store.dispatch(actions.load());
+    }
+}
+
+export default configureContainer(Widgets, { mapStateToProps, mapDispatchToProps, fetchData });

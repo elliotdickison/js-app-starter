@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import configureContainer from '../configure-container';
 
 class Front extends Component {
 
@@ -11,4 +12,4 @@ class Front extends Component {
     }
 }
 
-export default Front;
+export default configureContainer(Front);
