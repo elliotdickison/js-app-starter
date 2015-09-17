@@ -29,7 +29,7 @@ gulp.task('test-js', function(){
 });
 
 gulp.task('build-js', function(){
-    gulp.src('client/index.js')
+    gulp.src('src/client/index.js')
         .pipe(browserify({
             transform: 'babelify',
         }))

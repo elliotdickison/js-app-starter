@@ -1,6 +1,6 @@
 # JavaScript App Boilerplate
 
-This is a template for isomorphic/universal javascript web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how I feel about all of them yet*.
+This is a template for universal ("isomorphic") javascript web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how to use them or how I feel about them*.
 
 \* Except for React and Redux, which are the cat's pajamas and the dog's galoshes, respectively.
 
@@ -34,7 +34,8 @@ This is a template for isomorphic/universal javascript web applications. This is
 
 * Documentation (sheesh, why isn't this done already!?)
 * Try out webpack
-* Research isomorphic/universal data fetching based on routes
+* Clean up route handling (redirects, 404s, etc.)
+* Clean up data fetching (create a mixing?)
 * Stuff it all into Yoeman w/ some handy-dandy generators and options
 * look at redux-react-router
 * Radium?

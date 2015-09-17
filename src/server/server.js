@@ -3,43 +3,29 @@ import fs from 'fs';
 import path from 'path';
 
 import React from 'react';
-import { Provider } from 'react-redux';
+
+import configureStore from '../common/configure-store';
 
 import createLocation from 'history/lib/createLocation';
 import { RoutingContext, match } from 'react-router';
 import routes from '../common/routes';
-
-import configureStore from '../common/configure-store';
-import { fetchAllWidgets } from '../common/api/widgets';
+import {Provider} from 'react-redux';
 
 const app = new Express();
 const port = 3000;
 
-app.use(Express.static(path.join(__dirname, '../public')));
+app.use(Express.static(path.join(__dirname, '../../public')));
 
 app.use( (req, res) => {
+    const store = configureStore();
     const location = createLocation(req.url);
-    match({ routes, location }, (error, redirectLocation, renderProps) => {
-        if (redirectLocation) {
-            res.redirect(301, redirectLocation.pathname + redirectLocation.search);
-        } else if (error) {
-            res.send(500, error.message);
-        } else if (renderProps === null) {
-            res.send(404, 'Not found');
-        } else {
-            fetchAllWidgets( (apiResult) => {
-                const initialState = { widgets: apiResult || [] };
-                const store = configureStore(initialState);
-                const state = store.getState();
-                const html = React.renderToString(
-                    <Provider store={store}>
-                        {() => <RoutingContext {...renderProps}/>}
-                    </Provider>
-                );
-                res.send(renderPage(html, state));
-            });
-        }
-    });
+    renderRoute(location, store)
+        .then( (data) => {
+            res.send(renderPage(data.html, data.state));
+        })
+        .catch( (error) => {
+            console.log(error);
+        });
 });
 
 app.listen(port, (error) => {
@@ -56,4 +42,41 @@ function renderPage (html, state) {
         .toString()
         .replace('{{html}}', html)
         .replace('{{state}}', JSON.stringify(state));
+}
+
+function getFetchDataFromRoute (route) {
+    return route.WrappedComponent ? getFetchDataFromRoute(route.WrappedComponent) : route.fetchData;
+}
+
+function getPromisesFromRoutes (routes, store) {
+    return routes
+        .filter( (route) => getFetchDataFromRoute(route) )
+        .map(getFetchDataFromRoute)
+        .map( (fetchData) => fetchData(store) );
+}
+
+function renderRoute (location, store) {
+    return new Promise( (resolve, reject) => {
+        match({ routes, location }, (error, redirectLocation, renderProps) => {
+            if (error) {
+                return reject(error);
+            }
+            Promise
+                .all(getPromisesFromRoutes(renderProps.components, store))
+                .then( () => {
+                    const html = React.renderToString(
+                        <Provider store={store}>
+                            {() => <RoutingContext {...renderProps}/>}
+                        </Provider>
+                    );
+                    return resolve({
+                        html,
+                        state: store.getState(),
+                    });
+                })
+                .catch( (error) => {
+                    reject(error);
+                });
+        });
+    });
 }
