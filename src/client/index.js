@@ -9,7 +9,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import configureStore from '../common/configure-store';
 
-const history = createBrowserHistory()
+const history = createBrowserHistory();
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState);
 const rootElement = document.getElementById('root');
