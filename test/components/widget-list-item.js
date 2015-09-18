@@ -4,16 +4,16 @@ import React from 'react/addons';
 import WidgetListItem from '../../src/common/components/widget-list-item';
 
 TestDom.init();
-const TestUtils = React.addons.TestUtils;
-const noop = () => null
+let TestUtils = React.addons.TestUtils;
+let noop = () => null
 
 describe('WidgetListItem component', function(){
-    const testIndex = 0;
-    const testWidget = {
+    let testIndex = 0;
+    let testWidget = {
         name: 'I be in the town all day',
     };
     before('render and locate element', function() {
-        const renderedComponent = TestUtils.renderIntoDocument(
+        let renderedComponent = TestUtils.renderIntoDocument(
             <WidgetListItem index={testIndex} widget={testWidget} destroy={noop} />
         );
         this.renderedElement = React.findDOMNode(renderedComponent);
@@ -28,7 +28,7 @@ describe('WidgetListItem component', function(){
     });
 
     it('contains a "Destroy" button', function() {
-        const button = this.renderedElement.querySelector('input[type=button]');
+        let button = this.renderedElement.querySelector('input[type=button]');
         expect(button).to.be.a('object');
         expect(button.value).to.equal('Destroy');
     });

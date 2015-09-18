@@ -23,7 +23,7 @@ class Widgets extends Component {
     }
 
     render () {
-        const widgetListItems = this.props.widgets.data.map( (widget, index) => {
+        let widgetListItems = this.props.widgets.data.map( (widget, index) => {
             return <WidgetListItem key={index} widget={widget} index={index} destroy={this.props.destroy} />;
         });
         return (
@@ -60,7 +60,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function fetchData (store) {
-    const state = store.getState();
+    let state = store.getState();
     if (!state.widgets.loaded && !state.widgets.loading) {
         return store.dispatch(actions.load());
     }

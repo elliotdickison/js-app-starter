@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 export default function configureContainer (Container, config = {}) {
 
-    const ReduxConnected = connect(config.mapStateToProps, config.mapDispatchToProps)(Container);
+    let ReduxConnected = connect(config.mapStateToProps, config.mapDispatchToProps)(Container);
 
     if (!config.fetchData) {
         return ReduxConnected;

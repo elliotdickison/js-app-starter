@@ -4,7 +4,7 @@ const LOAD_FAIL = 'LOAD_WIDGETS_FAIL';
 const BUILD = 'BUILD_WIDGET';
 const DESTROY = 'DESTROY_WIDGET';
 
-const initialState = {
+let initialState = {
     loaded: false,
     loading: false,
     data: [],
@@ -51,7 +51,7 @@ export function reducers (state = initialState, action = undefined) {
     }
 }
 
-export const actions = {
+export let actions = {
 
     load () {
         return (dispatch) => {

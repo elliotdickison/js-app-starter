@@ -11,14 +11,14 @@ import { RoutingContext, match } from 'react-router';
 import routes from '../common/routes';
 import {Provider} from 'react-redux';
 
-const app = new Express();
-const port = 3000;
+let app = new Express();
+let port = 3000;
 
 app.use(Express.static(path.join(__dirname, '../../public')));
 
 app.use( (req, res) => {
-    const store = configureStore();
-    const location = createLocation(req.url);
+    let store = configureStore();
+    let location = createLocation(req.url);
     renderRoute(location, store)
         .then( (data) => {
             res.send(renderPage(data.html, data.state));
@@ -64,7 +64,7 @@ function renderRoute (location, store) {
             Promise
                 .all(getPromisesFromRoutes(renderProps.components, store))
                 .then( () => {
-                    const html = React.renderToString(
+                    let html = React.renderToString(
                         <Provider store={store}>
                             {() => <RoutingContext {...renderProps}/>}
                         </Provider>

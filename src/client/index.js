@@ -9,10 +9,10 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import configureStore from '../common/configure-store';
 
-const history = createBrowserHistory();
-const initialState = window.__INITIAL_STATE__;
-const store = configureStore(initialState);
-const rootElement = document.getElementById('root');
+let history = createBrowserHistory();
+let initialState = window.__INITIAL_STATE__;
+let store = configureStore(initialState);
+let rootElement = document.getElementById('root');
 
 React.render(
     <Provider store={store}>
