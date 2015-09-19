@@ -105,7 +105,7 @@ export let actions = {
 function fetchAllWidgets () {
     return new Promise( (resolve, reject) => {
         setTimeout( () => {
-            resolve([{ name: "one" }, { name: "two" }]);
+            resolve([{ name: 'one' }, { name: 'two' }]);
         }, 500);
     });
 }

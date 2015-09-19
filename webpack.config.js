@@ -7,10 +7,17 @@ module.exports = {
         filename: 'index.js',
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loaders: ['eslint'],
+                include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'test')],
+            },
+        ],
         loaders: [
             {
                 test: /\.js$/,
-                loaders: ['babel-loader'],
+                loaders: ['babel'],
                 include: path.join(__dirname, 'src'),
             },
             {
