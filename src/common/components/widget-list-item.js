@@ -2,6 +2,12 @@ import React, { Component, PropTypes } from 'react';
 
 class WidgetListItem extends Component {
 
+    static propTypes = {
+        index: PropTypes.number.isRequired,
+        widget: PropTypes.object.isRequired,
+        destroy: PropTypes.func.isRequired,
+    }
+
     onDestroyWidgetClick () {
         this.props.destroy(this.props.index);
     }
@@ -15,11 +21,5 @@ class WidgetListItem extends Component {
         );
     }
 }
-
-WidgetListItem.propTypes = {
-    index: PropTypes.number.isRequired,
-    widget: PropTypes.object.isRequired,
-    destroy: PropTypes.func.isRequired,
-};
 
 export default WidgetListItem;

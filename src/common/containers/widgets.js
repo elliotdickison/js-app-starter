@@ -6,6 +6,13 @@ import WidgetListItem from '../components/widget-list-item';
 
 class Widgets extends Component {
 
+    static propTypes = {
+        build: PropTypes.func.isRequired,
+        asyncBuild: PropTypes.func.isRequired,
+        destroy: PropTypes.func.isRequired,
+        widgets: PropTypes.object.isRequired,
+    }
+
     onBuildClick () {
         this.props.build({
             name: this.refs.newWidgetName.getDOMNode().value,
@@ -41,13 +48,6 @@ class Widgets extends Component {
         );
     }
 }
-
-Widgets.propTypes = {
-    build: PropTypes.func.isRequired,
-    asyncBuild: PropTypes.func.isRequired,
-    destroy: PropTypes.func.isRequired,
-    widgets: PropTypes.object.isRequired,
-};
 
 function mapStateToProps(state) {
     return {
