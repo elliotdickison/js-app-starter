@@ -11,17 +11,19 @@ import { RoutingContext, match } from 'react-router';
 import routes from '../common/routes';
 import {Provider} from 'react-redux';
 
-let app = new Express();
-let port = 3000;
+let isProduction = process.env.NODE_ENV === 'production';
+let port = isProduction ? process.env.PORT : 3000;
 
-app.use(Express.static(path.join(__dirname, '../../public')));
+let app = new Express();
+
+app.use(Express.static(path.join(__dirname, '../../dist')));
 
 app.use( (req, res) => {
     let store = configureStore();
     let location = createLocation(req.url);
     renderRoute(location, store)
         .then( (data) => {
-            res.send(renderPage(data.html, data.state));
+            res.status(data.status)[data.method](data.value);
         })
         .catch( (error) => {
             console.log(error);
@@ -59,24 +61,38 @@ function renderRoute (location, store) {
     return new Promise( (resolve, reject) => {
         match({ routes, location }, (error, redirectLocation, renderProps) => {
             if (error) {
-                return reject(error);
-            }
-            Promise
-                .all(getPromisesFromRoutes(renderProps.components, store))
-                .then( () => {
-                    let html = React.renderToString(
-                        <Provider store={store}>
-                            {() => <RoutingContext {...renderProps}/>}
-                        </Provider>
-                    );
-                    return resolve({
-                        html,
-                        state: store.getState(),
-                    });
-                })
-                .catch( (error) => {
-                    reject(error);
+                reject(error);
+            } else if (renderProps === null) {
+                resolve({
+                    status: 404,
+                    method: 'send',
+                    value: 'Yiss?',
                 });
+            } else if (redirectLocation) {
+                resolve({
+                    status: 301,
+                    method: 'redirect',
+                    value: redirectLocation.pathname + redirectLocation.search,
+                });
+            } else {
+                Promise
+                    .all(getPromisesFromRoutes(renderProps.components, store))
+                    .then( () => {
+                        let html = React.renderToString(
+                            <Provider store={store}>
+                                {() => <RoutingContext {...renderProps}/>}
+                            </Provider>
+                        );
+                        return resolve({
+                            status: 200,
+                            method: 'send',
+                            value: renderPage(html, store.getState()),
+                        });
+                    })
+                    .catch( (error) => {
+                        reject(error);
+                    });
+            }
         });
     });
 }

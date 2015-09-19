@@ -33,10 +33,7 @@ This is a template for universal ("isomorphic") javascript web applications. Thi
 # Future Plans
 
 * Documentation (sheesh, why isn't this done already!?)
-* Try out webpack
 * Clean up route handling (redirects, 404s, etc.)
 * Clean up data fetching (create a mixing?)
 * Stuff it all into Yoeman w/ some handy-dandy generators and options
 * look at redux-react-router
-* Radium?
-* Koa?
