@@ -53,25 +53,24 @@ export function reducers (state = initialState, action = undefined) {
 
 export let actions = {
 
-  load () {
-    return (dispatch) => {
-      dispatch({
-        type: REQUEST_LOAD,
-      });
-      return fetchAllWidgets()
-        .then( (payload) => {
-          dispatch({
-            type: LOAD_SUCCESS,
-            payload,
-          });
-        })
-        .catch( (error) => {
-          dispatch({
-            type: LOAD_FAIL,
-            error,
-          });
-        });
+  requestLoad () {
+    return {
+      type: REQUEST_LOAD,
     };
+  },
+
+  loadSuccess (data) {
+    return {
+      type: LOAD_SUCCESS,
+      payload: data,
+    };
+  },
+
+  loadFail (error) {
+    return {
+      type: LOAD_FAIL,
+      error: error,
+    }
   },
 
   build (data) {
@@ -88,19 +87,30 @@ export let actions = {
     };
   },
 
-  asyncBuild (data) {
-    return (dispatch) => {
-      return buildWidget(data)
-        .then( (payload) => {
-          dispatch({
-            type: BUILD,
-            payload,
-          });
-        });
-    };
-  },
-
 };
+
+actions.load = () => {
+  return (dispatch) => {
+    dispatch(actions.requestLoad());
+    return fetchAllWidgets()
+      .then( (data) => {
+        dispatch(actions.loadSuccess(data));
+      })
+      .catch( (error) => {
+        dispatch(actions.loadFail(error));
+      });
+  };
+};
+
+actions.asyncBuild = (data) => {
+  return (dispatch) => {
+    return buildWidget(data)
+      .then( (data) => {
+        dispatch(actions.build(data));
+      });
+  };
+};
+
 
 function fetchAllWidgets () {
   return new Promise( (resolve, reject) => {
