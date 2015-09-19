@@ -32,6 +32,10 @@ This is a template for universal ("isomorphic") javascript web applications. Thi
 
 # Future Plans
 
+* Optimize container configuration
+* Create more atomic action creators
+* Source maps
+* Uglify js
 * Documentation (sheesh, why isn't this done already!?)
 * Hot reloading - https://github.com/gaearon/react-transform-boilerplate
 * Stuff it all into Yoeman w/ some handy-dandy generators and options
