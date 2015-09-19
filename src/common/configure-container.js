@@ -3,28 +3,28 @@ import { connect } from 'react-redux';
 
 export default function configureContainer (Container, config = {}) {
 
-    let ReduxConnected = connect(config.mapStateToProps, config.mapDispatchToProps)(Container);
+  let ReduxConnected = connect(config.mapStateToProps, config.mapDispatchToProps)(Container);
 
-    if (!config.fetchData) {
-        return ReduxConnected;
+  if (!config.fetchData) {
+    return ReduxConnected;
+  }
+
+  class FetchDataConnected extends Component {
+
+    componentDidMount () {
+      FetchDataConnected.fetchData(this.context.store);
     }
 
-    class FetchDataConnected extends Component {
-
-        componentDidMount () {
-            FetchDataConnected.fetchData(this.context.store);
-        }
-
-        render () {
-            return <ReduxConnected {...this.props} />;
-        }
+    render () {
+      return <ReduxConnected {...this.props} />;
     }
+  }
 
-    FetchDataConnected.contextTypes = {
-        store: React.PropTypes.object
-    };
+  FetchDataConnected.contextTypes = {
+    store: React.PropTypes.object
+  };
 
-    FetchDataConnected.fetchData = config.fetchData;
+  FetchDataConnected.fetchData = config.fetchData;
 
-    return FetchDataConnected;
+  return FetchDataConnected;
 }

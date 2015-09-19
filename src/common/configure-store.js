@@ -4,11 +4,11 @@ import { combineReducers } from 'redux';
 import { reducers as widgets } from './modules/widgets';
 
 let rootReducer = combineReducers({
-    widgets,
+  widgets,
 });
 
 let createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 export default function configureStore (initialState) {
-    return createStoreWithMiddleware(rootReducer, initialState);
+  return createStoreWithMiddleware(rootReducer, initialState);
 }

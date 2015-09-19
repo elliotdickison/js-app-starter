@@ -16,8 +16,8 @@ let store = configureStore(initialState);
 let rootElement = document.getElementById('root');
 
 React.render(
-    <Provider store={store}>
-        {() => <Router history={history}>{routes}</Router>}
-    </Provider>,
-    rootElement
+  <Provider store={store}>
+    {() => <Router history={history}>{routes}</Router>}
+  </Provider>,
+  rootElement
 );
