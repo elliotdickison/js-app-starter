@@ -32,7 +32,6 @@ This is a template for universal ("isomorphic") javascript web applications. Thi
 
 # Future Plans
 
-* Optimize container configuration
 * Source maps
 * Documentation (sheesh, why isn't this done already!?)
 * Hot reloading - https://github.com/gaearon/react-transform-boilerplate
