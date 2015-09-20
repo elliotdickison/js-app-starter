@@ -32,5 +32,26 @@
     "lint": "eslint src test --ext .js",
     "start": "node src/server",
     "test": "mocha --require babel-core/register --recursive"
+  },
+  "babel": {
+    "stage": 0
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "jsx-quotes": 1,
+      "quotes": [2, "single"],
+      "react/jsx-boolean-value": 1,
+      "react/jsx-no-undef": 1,
+      "react/jsx-uses-react": 1,
+      "react/jsx-uses-vars": 1
+    }
   }
 }
