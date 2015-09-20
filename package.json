@@ -28,7 +28,7 @@
     "webpack": "^1.12.2"
   },
   "scripts": {
-    "build": "webpack --optimize-minimize",
+    "build": "webpack",
     "lint": "eslint src test --ext .js",
     "start": "node src/server",
     "test": "mocha --require babel-core/register --recursive"

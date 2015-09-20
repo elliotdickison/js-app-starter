@@ -1,5 +1,6 @@
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var Webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
@@ -30,5 +31,10 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('index.css'),
+    new Webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
+    }),
   ],
 };
