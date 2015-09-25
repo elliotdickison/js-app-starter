@@ -32,7 +32,9 @@ This is a template for universal ("isomorphic") javascript web applications. Thi
 
 # Future Plans
 
+* Koa
 * Source maps
+* Serve initial state from a file for a faster first-render
 * Documentation (sheesh, why isn't this done already!?)
 * Hot reloading - https://github.com/gaearon/react-transform-boilerplate
 * Stuff it all into Yoeman w/ some handy-dandy generators and options
