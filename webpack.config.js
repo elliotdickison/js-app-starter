@@ -7,23 +7,13 @@ var commonConfig = {
   entry: [
     path.resolve(__dirname, 'src/client/index.js')
   ],
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        include: path.join(__dirname, 'src'),
-      },
-    ],
-  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
   },
 };
 
-if (process.env.NODE_ENV === 'development') {
-  process.env.BABEL_ENV = 'hot';
+if (process.env.NODE_ENV === 'hot') {
   module.exports = merge(commonConfig, {
     devtool: 'eval',
     entry: [
@@ -31,6 +21,31 @@ if (process.env.NODE_ENV === 'development') {
     ],
     module: {
       loaders: [
+        {
+          test: /\.js$/,
+          loader: 'babel',
+          include: path.join(__dirname, 'src'),
+          query: {
+            plugins: [
+              "react-transform"
+            ],
+            extra: {
+              "react-transform": {
+                transforms: [
+                  {
+                    transform: "react-transform-hmr",
+                    imports: ["react"],
+                    locals: ["module"],
+                  },
+                  {
+                    transform: "react-transform-catch-errors",
+                    imports: ["react", "redbox-react"]
+                  },
+                ],
+              },
+            },
+          },
+        },
         {
           test: /\.scss$/,
           loader: 'css!sass?outputStyle=expanded',
@@ -42,18 +57,32 @@ if (process.env.NODE_ENV === 'development') {
       new webpack.NoErrorsPlugin(),
     ],
   });
+} else if (process.env.NODE_ENV === 'development') {
+  module.exports = merge(commonConfig, {
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          loader: 'babel',
+          include: path.join(__dirname, 'src'),
+        },
+        {
+          test: /\.scss$/,
+          loader: 'css!sass?outputStyle=expanded',
+        },
+      ],
+    },
+  });
 } else {
   module.exports = merge(commonConfig, {
     devtool: 'source-map',
     module: {
-      preLoaders: [
+      loaders: [
         {
           test: /\.js$/,
-          loaders: ['eslint'],
-          include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'test')],
-        }
-      ],
-      loaders: [
+          loader: 'babel',
+          include: path.join(__dirname, 'src'),
+        },
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract('css?sourceMap!sass?outputStyle=compressed&sourceMap'),

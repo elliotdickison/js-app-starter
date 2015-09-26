@@ -5,7 +5,7 @@ class Front extends Component {
   render () {
     return (
       <div>
-        Yo dawg
+        Yo dawg!
       </div>
     );
   }

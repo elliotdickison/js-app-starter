@@ -20,11 +20,10 @@
     "chai": "^3.2.0",
     "css-loader": "^0.18.0",
     "eslint": "^1.5.0",
-    "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.4.2",
     "extract-text-webpack-plugin": "^0.8.2",
     "jsdom": ">= 0.1.23 < 4.0.0",
-    "mocha": "^2.3.0",
+    "mocha": "^2.3.3",
     "node-sass": "^3.3.3",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",
@@ -35,10 +34,11 @@
     "webpack-hot-middleware": "^2.2.0"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack",
+    "build:dev": "NODE_ENV=development webpack",
     "lint": "eslint src test --ext .js",
     "start": "node -r babel-core/register src/server",
-    "start:dev": "NODE_ENV=development npm run start",
+    "start:hot": "NODE_ENV=hot npm run start",
     "test": "mocha --require babel-core/register --recursive"
   }
 }

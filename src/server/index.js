@@ -5,29 +5,19 @@ import path from 'path';
 import React from 'react';
 
 import configureStore from '../common/configure-store';
+import configureHmr from './configure-hmr';
 
 import createLocation from 'history/lib/createLocation';
 import { RoutingContext, match } from 'react-router';
 import routes from '../common/routes';
 import {Provider} from 'react-redux';
 
-// DEV ONLY - create a separate server.dev.js file....
-import webpack from 'webpack';
-import webpackConfig from '../../webpack.config';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-
 let port = process.env.PORT || 3000;
 
 let app = new Express();
 
-if (process.env.NODE_ENV === 'development') {
-  var compiler = webpack(webpackConfig);
-  app.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
-    publicPath: '/',
-  }));
-  app.use(webpackHotMiddleware(compiler));
+if (process.env.NODE_ENV === 'hot') {
+  configureHmr(app);
 }
 
 app.use(Express.static('dist'));
@@ -35,7 +25,7 @@ app.use(Express.static('dist'));
 app.use( (req, res) => {
   let store = configureStore();
   let location = createLocation(req.url);
-  renderRoute(location, store)
+  handleRoute(location, store)
     .then( (data) => {
       res.status(data.status)[data.method](data.value);
     })
@@ -72,7 +62,7 @@ function getPromisesFromRoutes (routes, store) {
     .map( (fetchData) => fetchData(store) );
 }
 
-function renderRoute (location, store) {
+function handleRoute (location, store) {
   return new Promise( (resolve, reject) => {
     match({ routes, location }, (error, redirectLocation, renderProps) => {
       if (error) {
@@ -93,12 +83,8 @@ function renderRoute (location, store) {
         Promise
           .all(getPromisesFromRoutes(renderProps.components, store))
           .then( () => {
-            let html = React.renderToString(
-              <Provider store={store}>
-                {() => <RoutingContext {...renderProps}/>}
-              </Provider>
-            );
-            let head = process.env.NODE_ENV === 'development' ? '' : '<link rel="stylesheet" type="text/css" href="index.css" />';
+            let html = renderHtml(store, renderProps);
+            let head = renderHead();
             return resolve({
               status: 200,
               method: 'send',
@@ -111,4 +97,16 @@ function renderRoute (location, store) {
       }
     });
   });
+}
+
+function renderHtml (store, renderProps) {
+  return React.renderToString(
+    <Provider store={store}>
+      {() => <RoutingContext {...renderProps}/>}
+    </Provider>
+  );
+}
+
+function renderHead () {
+  return process.env.NODE_ENV !== 'hot' ? '<link rel="stylesheet" type="text/css" href="index.css" />' : '';
 }
