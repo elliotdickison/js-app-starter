@@ -1,16 +1,11 @@
 import Express from 'express';
-import fs from 'fs';
-import path from 'path';
-
-import React from 'react';
-
-import configureStore from '../common/configure-store';
-import configureHmr from './configure-hmr';
-
+import configureStore from '../common/utils/configure-store';
+import configureHmr from './utils/configure-hmr';
 import createLocation from 'history/lib/createLocation';
-import { RoutingContext, match } from 'react-router';
+import { match } from 'react-router';
 import routes from '../common/routes';
-import {Provider} from 'react-redux';
+import fetchAllData from './utils/fetch-all-data';
+import renderPage from './utils/render-page';
 
 let port = process.env.PORT || 3000;
 
@@ -42,26 +37,6 @@ app.listen(port, (error) => {
   }
 });
 
-function renderPage (html, state, head = '') {
-  return fs
-    .readFileSync(path.join(__dirname, '/index.html'))
-    .toString()
-    .replace('{{head}}', head)
-    .replace('{{html}}', html)
-    .replace('{{state}}', JSON.stringify(state));
-}
-
-function getFetchDataFromRoute (route) {
-  return route.WrappedComponent ? getFetchDataFromRoute(route.WrappedComponent) : route.fetchData;
-}
-
-function getPromisesFromRoutes (routes, store) {
-  return routes
-    .filter( (route) => getFetchDataFromRoute(route) )
-    .map(getFetchDataFromRoute)
-    .map( (fetchData) => fetchData(store) );
-}
-
 function handleRoute (location, store) {
   return new Promise( (resolve, reject) => {
     match({ routes, location }, (error, redirectLocation, renderProps) => {
@@ -80,15 +55,12 @@ function handleRoute (location, store) {
           value: redirectLocation.pathname + redirectLocation.search,
         });
       } else {
-        Promise
-          .all(getPromisesFromRoutes(renderProps.components, store))
+        fetchAllData(renderProps.components, store)
           .then( () => {
-            let html = renderHtml(store, renderProps);
-            let head = renderHead();
             return resolve({
               status: 200,
               method: 'send',
-              value: renderPage(html, store.getState(), head),
+              value: renderPage(store, renderProps),
             });
           })
           .catch( (error) => {
@@ -97,16 +69,4 @@ function handleRoute (location, store) {
       }
     });
   });
-}
-
-function renderHtml (store, renderProps) {
-  return React.renderToString(
-    <Provider store={store}>
-      {() => <RoutingContext {...renderProps}/>}
-    </Provider>
-  );
-}
-
-function renderHead () {
-  return process.env.NODE_ENV !== 'hot' ? '<link rel="stylesheet" type="text/css" href="index.css" />' : '';
 }

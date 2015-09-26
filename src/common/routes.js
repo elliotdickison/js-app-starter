@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router';
-
 import App from './app';
 import Front from './containers/front';
 import Widgets from './containers/widgets';

@@ -1,14 +1,11 @@
 import 'babel-core/polyfill';
 import './styles/index.scss';
-
 import React from 'react';
 import { Provider } from 'react-redux';
-
 import Router from 'react-router';
 import routes from '../common/routes';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-
-import configureStore from '../common/configure-store';
+import configureStore from '../common/utils/configure-store';
 
 let history = createBrowserHistory();
 let initialState = window.__INITIAL_STATE__;
