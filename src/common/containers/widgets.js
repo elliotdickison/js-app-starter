@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import container from '../utils/container';
-import { actions } from '../modules/widgets';
+import * as actions from '../modules/widgets';
 import WidgetListItem from '../components/widget-list-item';
 
 function mapStateToProps(state) {

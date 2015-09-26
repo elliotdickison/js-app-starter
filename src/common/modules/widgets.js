@@ -1,8 +1,8 @@
-const REQUEST_LOAD = 'REQUEST_LOAD_WIDGETS';
-const LOAD_SUCCESS = 'LOAD_WIDGETS_SUCCESS';
-const LOAD_FAIL = 'LOAD_WIDGETS_FAIL';
-const BUILD = 'BUILD_WIDGET';
-const DESTROY = 'DESTROY_WIDGET';
+const REQUEST_LOAD = 'widgets/request-load';
+const LOAD_SUCCESS = 'widgets/success';
+const LOAD_FAIL = 'widgets/load-fail';
+const BUILD = 'widgets/build';
+const DESTROY = 'widgets/destroy';
 
 let initialState = {
   loaded: false,
@@ -11,7 +11,7 @@ let initialState = {
   error: null,
 };
 
-export function reducers (state = initialState, action = undefined) {
+export default function (state = initialState, action = {}) {
   switch (action.type) {
 
     case REQUEST_LOAD:
@@ -51,66 +51,61 @@ export function reducers (state = initialState, action = undefined) {
   }
 }
 
-export let actions = {
+export function requestLoad () {
+  return {
+    type: REQUEST_LOAD,
+  };
+}
 
-  requestLoad () {
-    return {
-      type: REQUEST_LOAD,
-    };
-  },
+export function loadSuccess (data) {
+  return {
+    type: LOAD_SUCCESS,
+    payload: data,
+  };
+}
 
-  loadSuccess (data) {
-    return {
-      type: LOAD_SUCCESS,
-      payload: data,
-    };
-  },
+export function loadFail (error) {
+  return {
+    type: LOAD_FAIL,
+    error: error,
+  }
+}
 
-  loadFail (error) {
-    return {
-      type: LOAD_FAIL,
-      error: error,
-    }
-  },
-
-  build (data) {
-    return {
-      type: BUILD,
-      payload: data
-    };
-  },
-
-  destroy (index) {
-    return {
-      type: DESTROY,
-      payload: index
-    };
-  },
-
-};
-
-actions.load = () => {
+export function load () {
   return (dispatch) => {
-    dispatch(actions.requestLoad());
+    dispatch(requestLoad());
     return fetchAllWidgets()
       .then( (data) => {
-        dispatch(actions.loadSuccess(data));
+        dispatch(loadSuccess(data));
       })
       .catch( (error) => {
-        dispatch(actions.loadFail(error));
+        dispatch(loadFail(error));
       });
   };
-};
+}
 
-actions.asyncBuild = (data) => {
+export function build (data) {
+  return {
+    type: BUILD,
+    payload: data
+  };
+}
+
+export function asyncBuild (data) {
   return (dispatch) => {
     return buildWidget(data)
       .then( (data) => {
-        dispatch(actions.build(data));
+        dispatch(build(data));
       });
   };
-};
+}
 
+export function destroy (index) {
+  return {
+    type: DESTROY,
+    payload: index
+  };
+}
 
 function fetchAllWidgets () {
   return new Promise( (resolve, reject) => {
