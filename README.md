@@ -43,6 +43,7 @@ This is a template for universal ("isomorphic") javascript web applications. Thi
 * ImmutableJS
 * Koa
 * PureRender base component
+* http://simonsmith.io/unit-testing-react-components-without-a-dom/
 * Redux devtools
 * Serve initial state from a file for a faster first-render
 * Source maps?
