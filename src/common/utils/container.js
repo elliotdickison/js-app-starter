@@ -4,11 +4,7 @@ import { connect } from 'react-redux';
 export default function container ({mapStateToProps, mapDispatchToProps, fetchData}) {
   return function decorator(Container) {
 
-    if (mapStateToProps || mapDispatchToProps) {
-
-    }
-      connect(mapStateToProps, mapDispatchToProps)(Container)
-      : Container;
+    let ReduxConnected = connect(mapStateToProps, mapDispatchToProps)(Container);
 
     class DataConnected extends Component {
 
