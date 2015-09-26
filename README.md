@@ -39,7 +39,8 @@ This is a template for universal ("isomorphic") javascript web applications. Thi
 # Future Plans
 
 * Documentation (sheesh, why isn't this done already!?)
-* Firebase
+* ~~Firebase~~ not necessary for a starter kit
+* Track git hooks
 * ImmutableJS
 * Koa
 * PureRender base component
