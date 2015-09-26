@@ -1,9 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import configureContainer from '../configure-container';
+import container from '../container';
 import { actions } from '../modules/widgets';
 import WidgetListItem from '../components/widget-list-item';
 
+function mapStateToProps(state) {
+  return {
+    widgets: state.widgets,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
+
+function fetchData (store) {
+  let state = store.getState();
+  if (!state.widgets.loaded && !state.widgets.loading) {
+    return store.dispatch(actions.load());
+  }
+}
+
+@container({mapStateToProps, mapDispatchToProps, fetchData})
 class Widgets extends Component {
 
   static propTypes = {
@@ -49,21 +67,4 @@ class Widgets extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    widgets: state.widgets,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
-}
-
-function fetchData (store) {
-  let state = store.getState();
-  if (!state.widgets.loaded && !state.widgets.loading) {
-    return store.dispatch(actions.load());
-  }
-}
-
-export default configureContainer(Widgets, { mapStateToProps, mapDispatchToProps, fetchData });
+export default Widgets;
