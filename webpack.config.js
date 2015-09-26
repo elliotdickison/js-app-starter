@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === 'hot') {
         },
         {
           test: /\.scss$/,
-          loader: 'css!sass?outputStyle=expanded',
+          loader: 'style!css!sass?outputStyle=expanded',
         },
       ],
     },
@@ -68,7 +68,7 @@ if (process.env.NODE_ENV === 'hot') {
         },
         {
           test: /\.scss$/,
-          loader: 'css!sass?outputStyle=expanded',
+          loader: 'style!css!sass?outputStyle=expanded',
         },
       ],
     },
