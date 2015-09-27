@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import container from '../utils/container';
+import fetchData from '../utils/fetch-data';
+import { connect } from 'react-redux';
 import * as actions from '../modules/widgets';
 import WidgetListItem from '../components/widget-list-item';
 
@@ -14,14 +15,15 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
 }
 
-function fetchData (store) {
+function fetchWidgets (store) {
   let state = store.getState();
   if (!state.widgets.get('loaded') && !state.widgets.get('loading')) {
     return store.dispatch(actions.load());
   }
 }
 
-@container({mapStateToProps, mapDispatchToProps, fetchData})
+@fetchData(fetchWidgets)
+@connect(mapStateToProps, mapDispatchToProps)
 class Widgets extends Component {
 
   static propTypes = {

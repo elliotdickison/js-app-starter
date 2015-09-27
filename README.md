@@ -42,11 +42,10 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 * Documentation (sheesh, why isn't this done already!?)
 * ~~Firebase~~ not necessary for a starter kit
 * Track git hooks
-* ImmutableJS
 * Koa
 * PureRender base component
 * http://simonsmith.io/unit-testing-react-components-without-a-dom/
 * Redux devtools
-* Serve initial state from a file for a faster first-render
+* Serve initial state from a file for a faster first-render (security?)
 * Source maps?
 * Stuff it all into Yoeman w/ some handy-dandy generators and options
