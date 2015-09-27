@@ -3,12 +3,13 @@ import './styles/index.scss';
 import React from 'react';
 import { Provider } from 'react-redux';
 import Router from 'react-router';
+import { hydrate as hydrateState } from '../common/utils/state';
 import routes from '../common/routes';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import configureStore from '../common/utils/configure-store';
 
 let history = createBrowserHistory();
-let initialState = window.__INITIAL_STATE__;
+let initialState = hydrateState(window.__INITIAL_STATE__);
 let store = configureStore(initialState);
 let rootElement = document.getElementById('root');
 

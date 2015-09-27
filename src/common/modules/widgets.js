@@ -1,26 +1,26 @@
+import Immutable, { Map, List } from 'immutable';
+
 const REQUEST_LOAD = 'widgets/request-load';
 const LOAD_SUCCESS = 'widgets/success';
 const LOAD_FAIL = 'widgets/load-fail';
 const BUILD = 'widgets/build';
 const DESTROY = 'widgets/destroy';
 
-let initialState = {
+let initialState = Map({
   loaded: false,
   loading: false,
-  data: [],
+  data: List(),
   error: null,
-};
+});
 
 export default function (state = initialState, action = {}) {
   switch (action.type) {
 
     case REQUEST_LOAD:
-      return Object.assign({}, state, {
-        loading: true,
-      });
+      return state.set('loading', true);
 
     case LOAD_SUCCESS:
-      return Object.assign({}, state, {
+      return state.merge({
         loading: false,
         loaded: true,
         data: action.payload,
@@ -28,23 +28,17 @@ export default function (state = initialState, action = {}) {
       });
 
     case LOAD_FAIL:
-      return Object.assign({}, state, {
+      return state.merge({
         loading: false,
         loaded: false,
         error: action.error,
       });
 
     case BUILD:
-      return Object.assign({}, state, {
-        data: [].concat(state.data, action.payload),
-      });
+      return state.set('data', state.get('data').push(Immutable.fromJS(action.payload)));
 
     case DESTROY:
-      return Object.assign({}, state, {
-        data: state.data.filter( (widget, index) => {
-          return index !== action.payload;
-        }),
-      });
+      return state.set('data', state.get('data').delete(action.payload));
 
     default:
       return state;

@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch) {
 
 function fetchData (store) {
   let state = store.getState();
-  if (!state.widgets.loaded && !state.widgets.loading) {
+  if (!state.widgets.get('loaded') && !state.widgets.get('loading')) {
     return store.dispatch(actions.load());
   }
 }
@@ -48,12 +48,12 @@ class Widgets extends Component {
   }
 
   render () {
-    let widgetListItems = this.props.widgets.data.map( (widget, index) => {
+    let widgetListItems = this.props.widgets.get('data').map( (widget, index) => {
       return <WidgetListItem key={index} widget={widget} index={index} destroy={this.props.destroy} />;
     });
     return (
       <ul>
-        {widgetListItems}
+        {this.props.widgets.get('loading') ? <li>Loading...</li> : widgetListItems}
         <li>
           <input type="text" ref="newWidgetName" />
           <input type="button" value="Build" onClick={this.onBuildClick.bind(this)} />

@@ -3,6 +3,7 @@ import path from 'path';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { RoutingContext } from 'react-router';
+import { dehydrate as dehydrateState } from '../../common/utils/state';
 
 function renderHtml (store, renderProps) {
   return React.renderToString(
@@ -22,5 +23,5 @@ export default function renderPage (store, renderProps) {
     .toString()
     .replace('{{head}}', renderHead())
     .replace('{{html}}', renderHtml(store, renderProps))
-    .replace('{{state}}', JSON.stringify(store.getState()));
+    .replace('{{state}}', dehydrateState(store.getState()));
 }

@@ -15,7 +15,7 @@ class WidgetListItem extends Component {
   render () {
     return (
       <li>
-        {this.props.widget.name}
+        {this.props.widget.get('name')}
         <input type="button" value="Destroy" onClick={this.onDestroyWidgetClick.bind(this)} />
       </li>
     );

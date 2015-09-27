@@ -1,6 +1,6 @@
-# JavaScript App Starter
+# JavaScript App Starter Kit
 
-This is a template for universal ("isomorphic") javascript web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how to use them or how I feel about them*.
+This is a starter kit for universal react/redux javascript web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how to use them or how I feel about them*.
 
 \* Update: React, Redux, and Babel are the cat's pajamas, the bee's knees, and the dog's galoshes.
 
@@ -22,6 +22,7 @@ This is a template for universal ("isomorphic") javascript web applications. Thi
 
 ## App
 * [Babel](http://babeljs.io/)
+* [ImmutableJS](https://facebook.github.io/immutable-js/)
 * [Node](https://nodejs.org/)
 * [React](http://facebook.github.io/react/)
 * [Redux](https://github.com/rackt/redux)
