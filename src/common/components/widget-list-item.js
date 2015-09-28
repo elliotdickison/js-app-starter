@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import PureComponent from './pure-component';
 
-class WidgetListItem extends Component {
+class WidgetListItem extends PureComponent {
 
   static propTypes = {
     index: PropTypes.number.isRequired,

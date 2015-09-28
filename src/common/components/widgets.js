@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import PureComponent from './pure-component';
 import { bindActionCreators } from 'redux';
 import fetchData from '../utils/fetch-data';
 import { connect } from 'react-redux';
@@ -24,7 +25,7 @@ function fetchWidgets (store) {
 
 @fetchData(fetchWidgets)
 @connect(mapStateToProps, mapDispatchToProps)
-class Widgets extends Component {
+class Widgets extends PureComponent {
 
   static propTypes = {
     build: PropTypes.func.isRequired,

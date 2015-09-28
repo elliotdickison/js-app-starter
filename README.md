@@ -42,7 +42,6 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 * ~~Firebase~~ not necessary for a starter kit
 * Track git hooks
 * Koa
-* PureRender base component
 * Redux devtools
 * Serve initial state from a file for a faster first-render (security?)
 * Source maps?
