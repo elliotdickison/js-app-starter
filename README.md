@@ -17,6 +17,7 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 * Universal - data fetching + rendering
 * Immutable - state + UI
 * Testable - mocha + chai
+* Developable (?) - hot module replacement + in-browser error display
 
 # Technologies
 
