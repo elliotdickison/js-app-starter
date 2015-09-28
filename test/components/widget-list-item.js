@@ -1,36 +1,30 @@
 import { expect } from 'chai';
-import TestDom from '../test-dom';
-import React from 'react/addons';
+import { Map } from 'immutable';
+import { noop, renderComponent } from '../test-utils';
 import WidgetListItem from '../../src/common/components/widget-list-item';
 
-TestDom.init();
-let TestUtils = React.addons.TestUtils;
-let noop = () => null
-
 describe('WidgetListItem component', function(){
-  let testIndex = 0;
-  let testWidget = {
-    name: 'I be in the town all day',
+  let testProps = {
+    index: 0,
+    widget: Map({
+      name: 'I be in the town all day',
+    }),
+    destroy: noop,
   };
+  let widgetListItem = renderComponent(WidgetListItem, testProps);
 
-  before('render and locate element', function() {
-    let renderedComponent = TestUtils.renderIntoDocument(
-      <WidgetListItem index={testIndex} widget={testWidget} destroy={noop} />
-    );
-    this.renderedElement = React.findDOMNode(renderedComponent);
-  });
-
+  console.log(widgetListItem.props.children);
   it('is a list item', function() {
-    expect(this.renderedElement.tagName).to.equal('LI');
+    expect(widgetListItem.type).to.equal('li');
   });
 
   it('contains the widget name', function() {
-    expect(this.renderedElement.textContent).to.contain(testWidget.name);
+    expect(widgetListItem.props.children).to.contain(testProps.widget.get('name'));
   });
 
   it('contains a "Destroy" button', function() {
-    let button = this.renderedElement.querySelector('input[type=button]');
+    let button = widgetListItem.props.children.find( (child) => child.type === 'input' );
     expect(button).to.be.a('object');
-    expect(button.value).to.equal('Destroy');
+    expect(button.props.value).to.equal('Destroy');
   });
 });

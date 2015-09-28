@@ -14,9 +14,9 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 
 # Features
 
-* Universal - async data fetching and rendering on server and client
-* Immutable - state and UI
-* Testable - mocha + chai + jsom = easy testing of app and components
+* Universal - data fetching + rendering
+* Immutable - state + UI
+* Testable - mocha + chai
 
 # Technologies
 
@@ -34,7 +34,6 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 ## Test
 * [Chai](http://chaijs.com/)
 * [ESLint](http://eslint.org/)
-* [jsdom](https://github.com/tmpvar/jsdom)
 * [Mocha](https://mochajs.org/)
 
 # Future Plans
@@ -44,7 +43,6 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 * Track git hooks
 * Koa
 * PureRender base component
-* http://simonsmith.io/unit-testing-react-components-without-a-dom/
 * Redux devtools
 * Serve initial state from a file for a faster first-render (security?)
 * Source maps?
