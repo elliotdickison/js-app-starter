@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/elliotdickison/js-app-starter.svg?branch=master)](https://travis-ci.org/elliotdickison/js-app-starter)
+
 # JavaScript App Starter Kit
 
 This is a starter kit for universal react/redux javascript web applications. This is very much a work in progress. I'm also not necessarily recommending this setup. I'm still learning many of these tools and don't know how to use them or how I feel about them*.
