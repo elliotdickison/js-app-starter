@@ -40,7 +40,6 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 # Future Plans
 
 * Documentation (sheesh, why isn't this done already!?)
-* TravisCI + badge
 * Track git hooks
 * Redux devtools
 * Serve initial state from a file for a faster first-render (security?)
