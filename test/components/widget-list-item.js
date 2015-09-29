@@ -1,9 +1,11 @@
-import { expect } from 'chai';
-import { Map } from 'immutable';
+import test from 'tape';
 import { noop, renderComponent } from '../test-utils';
+import { Map } from 'immutable';
 import WidgetListItem from '../../src/common/components/widget-list-item';
 
-describe('WidgetListItem component', function(){
+test('WidgetListItem component', function(t){
+  t.plan(4);
+
   let testProps = {
     index: 0,
     widget: Map({
@@ -13,18 +15,11 @@ describe('WidgetListItem component', function(){
   };
   let widgetListItem = renderComponent(WidgetListItem, testProps);
 
-  console.log(widgetListItem.props.children);
-  it('is a list item', function() {
-    expect(widgetListItem.type).to.equal('li');
-  });
+  t.equal(widgetListItem.type, 'li', 'Found a list item element');
 
-  it('contains the widget name', function() {
-    expect(widgetListItem.props.children).to.contain(testProps.widget.get('name'));
-  });
+  t.ok(~widgetListItem.props.children.indexOf(testProps.widget.get('name')), 'The widget name is included');
 
-  it('contains a "Destroy" button', function() {
-    let button = widgetListItem.props.children.find( (child) => child.type === 'input' );
-    expect(button).to.be.a('object');
-    expect(button.props.value).to.equal('Destroy');
-  });
+  let button = widgetListItem.props.children.find( (child) => child.type === 'input' );
+  t.equal(typeof button, 'object', 'Found a button');
+  t.equal(button.props.value, 'Destroy', 'The button is labelled "Destroy"');
 });

@@ -14,9 +14,9 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 
 # Features
 
-* Universal - data fetching + rendering
+* Universal - data fetching + rendering on both sides of the fence
 * Immutable - state + UI
-* Testable - mocha + chai
+* Testable - TAP with tape
 * Developable (?) - hot module replacement + in-browser error display
 
 # Technologies
@@ -33,16 +33,13 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 * [Webpack](https://webpack.github.io/)
 
 ## Test
-* [Chai](http://chaijs.com/)
-* [ESLint](http://eslint.org/)
-* [Mocha](https://mochajs.org/)
+* [Tape](https://github.com/substack/tape)
 
 # Future Plans
 
 * Documentation (sheesh, why isn't this done already!?)
-* ~~Firebase~~ not necessary for a starter kit
+* TravisCI + badge
 * Track git hooks
-* Koa
 * Redux devtools
 * Serve initial state from a file for a faster first-render (security?)
 * Source maps?
