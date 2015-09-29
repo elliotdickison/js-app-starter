@@ -1,13 +1,15 @@
-import React, { PropTypes } from 'react';
-import PureComponent from './pure-component';
+import React, { Component, PropTypes } from 'react';
+import shouldPureComponentUpdate from '../utils/should-pure-component-update';
 
-class WidgetListItem extends PureComponent {
+class WidgetListItem extends Component {
 
   static propTypes = {
     index: PropTypes.number.isRequired,
     widget: PropTypes.object.isRequired,
     destroy: PropTypes.func.isRequired,
   }
+
+  shouldComponentUpdate = shouldPureComponentUpdate
 
   onDestroyWidgetClick () {
     this.props.destroy(this.props.index);

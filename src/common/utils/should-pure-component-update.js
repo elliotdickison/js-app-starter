@@ -1,11 +1,4 @@
-import React, { Component } from 'react';
 import Immutable from 'immutable';
-
-export default class PureComponent extends Component {
-  shouldComponentUpdate (nextProps, nextState) {
-    return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
-  }
-}
 
 function isSame (thingOne, thingTwo) {
   return thingOne === thingTwo || Immutable.is(thingOne, thingTwo);
@@ -39,4 +32,8 @@ function shallowEqual (thingOne, thingTwo) {
   }
 
   return true;
+}
+
+export default function shouldPureComponentUpdate (nextProps, nextState) {
+  return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
 }
