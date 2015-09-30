@@ -1,11 +1,11 @@
 import Express from 'express';
-import configureStore from '../common/utils/configure-store';
+import configureStore from './utils/configure-store';
 import configureHmr from './utils/configure-hmr';
 import createLocation from 'history/lib/createLocation';
 import { match } from 'react-router';
-import routes from '../common/routes';
-import fetchAllData from './utils/fetch-all-data';
-import renderPage from './utils/render-page';
+import routes from './routes';
+import { fetchDataForRoutes } from './utils/connect-route-data';
+import renderHtml from './utils/render-html';
 
 let port = process.env.PORT || 3000;
 
@@ -55,12 +55,12 @@ function handleRoute (location, store) {
           value: redirectLocation.pathname + redirectLocation.search,
         });
       } else {
-        fetchAllData(renderProps.components, store)
+        fetchDataForRoutes(renderProps.components, store)
           .then( () => {
             return resolve({
               status: 200,
               method: 'send',
-              value: renderPage(store, renderProps),
+              value: renderHtml(store, renderProps),
             });
           })
           .catch( (error) => {

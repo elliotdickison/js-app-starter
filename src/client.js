@@ -3,10 +3,10 @@ import './styles/index.scss';
 import React from 'react';
 import { Provider } from 'react-redux';
 import Router from 'react-router';
-import { hydrate as hydrateState } from '../common/utils/state';
-import routes from '../common/routes';
+import { hydrateState } from './utils/state';
+import routes from './routes';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import configureStore from '../common/utils/configure-store';
+import configureStore from './utils/configure-store';
 
 let history = createBrowserHistory();
 let initialState = hydrateState(window.__INITIAL_STATE__);

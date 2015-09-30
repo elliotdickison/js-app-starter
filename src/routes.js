@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
-import App from './app';
+import App from './components/app';
 import Front from './components/front';
 import Widgets from './components/widgets';
 

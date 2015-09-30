@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import fetchData from '../utils/fetch-data';
+import connectRouteData from '../utils/connect-route-data';
 import { connect } from 'react-redux';
 import * as actions from '../modules/widgets';
-import WidgetListItem from '../components/widget-list-item';
+import WidgetListItem from './widget-list-item';
 
 function mapStateToProps(state) {
   return {
@@ -22,7 +22,7 @@ function fetchWidgets (store) {
   }
 }
 
-@fetchData(fetchWidgets)
+@connectRouteData(fetchWidgets)
 @connect(mapStateToProps, mapDispatchToProps)
 class Widgets extends Component {
 

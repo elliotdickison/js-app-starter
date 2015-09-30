@@ -5,7 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var commonConfig = {
   entry: [
-    path.resolve(__dirname, 'src/client/index.js')
+    path.resolve(__dirname, 'src/client.js')
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),

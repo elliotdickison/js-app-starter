@@ -1,7 +1,7 @@
 import test from 'tape';
 import { noop, renderComponent } from '../test-utils';
 import { Map } from 'immutable';
-import WidgetListItem from '../../src/common/components/widget-list-item';
+import WidgetListItem from '../../src/components/widget-list-item';
 
 test('WidgetListItem component', function(t){
   t.plan(4);
