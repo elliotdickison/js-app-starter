@@ -12,7 +12,7 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 2. `cd` into the repo base directory
 3. Run `npm install` to install dependencies
 4. Run `npm run build:dev` to build assets for development
-5. Run `npm run start:hot` to start a server w/ hot module replacement
+5. Run `npm run start:dev` to start a server w/ hot module replacement
 
 # Features
 
@@ -39,9 +39,9 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 
 # Future Plans
 
+* Three folders in the same directory are named "components", "modules", and "utils"... fail
 * Documentation (sheesh, why isn't this done already!?)
 * Track git hooks
-* Redux devtools
 * Serve initial state from a file for a faster first-render (security?)
 * Source maps?
 * Stuff it all into Yoeman w/ some handy-dandy generators and options

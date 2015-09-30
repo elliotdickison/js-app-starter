@@ -34,11 +34,11 @@
     "webpack-merge": "^0.2.0"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "build:dev": "NODE_ENV=development webpack",
+    "build": "webpack",
+    "build:dev": "NODE_ENV=development npm run build",
     "lint": "eslint src test --ext .js",
     "start": "node -r babel-core/register src/server",
-    "start:hot": "NODE_ENV=hot npm run start",
+    "start:dev": "NODE_ENV=development npm run start",
     "test": "node -r babel-core/register test/**/*.js"
   }
 }

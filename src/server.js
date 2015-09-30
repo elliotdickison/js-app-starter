@@ -7,11 +7,13 @@ import routes from './routes';
 import { fetchDataForRoutes } from './utils/connect-route-data';
 import renderHtml from './utils/render-html';
 
+global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
+
 let port = process.env.PORT || 3000;
 
 let app = new Express();
 
-if (process.env.NODE_ENV === 'hot') {
+if (__DEVELOPMENT__) {
   configureHmr(app);
 }
 

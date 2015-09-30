@@ -5,7 +5,7 @@ import { dehydrateState } from './state';
 
 export default function renderHtml (store, renderProps) {
   let styles = [];
-  if (process.env.NODE_ENV !== 'hot') {
+  if (!__DEVELOPMENT__) {
     styles.push('<link rel="stylesheet" type="text/css" href="index.css" />');
   }
   return `<!DOCTYPE html>
@@ -16,13 +16,13 @@ export default function renderHtml (store, renderProps) {
       ${styles.join('')}
     </head>
     <body>
-      <div id="root">${
+      <div id="root"><div>${
         React.renderToString(
           <Provider store={store}>
             {() => <RoutingContext {...renderProps}/>}
           </Provider>
         )
-      }</div>
+      }</div></div>
       <script>window.__INITIAL_STATE__ = ${dehydrateState(store.getState())};</script>
       <script src="index.js"></script>
     </body>

@@ -13,7 +13,7 @@ var commonConfig = {
   },
 };
 
-if (process.env.NODE_ENV === 'hot') {
+if (process.env.NODE_ENV === 'development') {
   module.exports = merge(commonConfig, {
     devtool: 'eval',
     entry: [
@@ -55,23 +55,10 @@ if (process.env.NODE_ENV === 'hot') {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
+      new webpack.DefinePlugin({
+        __DEVELOPMENT__: true,
+      }),
     ],
-  });
-} else if (process.env.NODE_ENV === 'development') {
-  module.exports = merge(commonConfig, {
-    module: {
-      loaders: [
-        {
-          test: /\.js$/,
-          loader: 'babel',
-          include: path.join(__dirname, 'src'),
-        },
-        {
-          test: /\.scss$/,
-          loader: 'style!css!sass?outputStyle=expanded',
-        },
-      ],
-    },
   });
 } else {
   module.exports = merge(commonConfig, {
@@ -95,6 +82,9 @@ if (process.env.NODE_ENV === 'hot') {
         compressor: {
           warnings: false,
         },
+      }),
+      new webpack.DefinePlugin({
+        __DEVELOPMENT__: false,
       }),
     ],
   });
