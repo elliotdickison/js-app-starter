@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import shouldPureComponentUpdate from '../utils/should-pure-component-update';
+import shouldPureComponentUpdate from '../plumbing/should-pure-component-update';
 
 class WidgetListItem extends Component {
 

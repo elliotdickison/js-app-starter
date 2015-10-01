@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import connectRouteData from '../utils/connect-route-data';
+import connectRouteData from '../plumbing/connect-route-data';
 import { connect } from 'react-redux';
 import * as actions from '../modules/widgets';
 import WidgetListItem from './widget-list-item';

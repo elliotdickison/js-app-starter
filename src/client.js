@@ -1,11 +1,11 @@
 import 'babel-core/polyfill';
 import './styles/index.scss';
 import React from 'react';
-import { hydrateState } from './utils/state';
+import { hydrateState } from './plumbing/state';
 import routes from './routes';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import configureStore from './utils/configure-store';
-import renderApp from './utils/render-app';
+import configureStore from './plumbing/configure-store';
+import renderApp from './plumbing/render-app';
 
 let history = createBrowserHistory();
 let initialState = hydrateState(window.__INITIAL_STATE__);

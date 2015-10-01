@@ -1,11 +1,11 @@
 import Express from 'express';
-import configureStore from './utils/configure-store';
-import configureHmr from './utils/configure-hmr';
+import configureStore from './plumbing/configure-store';
+import configureHmr from './plumbing/configure-hmr';
 import createLocation from 'history/lib/createLocation';
 import { match } from 'react-router';
 import routes from './routes';
-import { fetchDataForRoutes } from './utils/connect-route-data';
-import renderHtml from './utils/render-html';
+import { fetchDataForRoutes } from './plumbing/connect-route-data';
+import renderHtml from './plumbing/render-html';
 
 global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
 
