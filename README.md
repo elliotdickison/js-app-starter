@@ -38,7 +38,6 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 
 # Future Plans
 
-* Three folders in the same directory are named "components", "modules", and "utils"... fail
 * Documentation (sheesh, why isn't this done already!?)
 * Track git hooks
 * Serve initial state from a file for a faster first-render (security?)

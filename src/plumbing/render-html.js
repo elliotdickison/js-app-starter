@@ -1,7 +1,6 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { RoutingContext } from 'react-router';
 import { dehydrateState } from './state';
+import renderApp from './render-app';
 
 export default function renderHtml (store, renderProps) {
   let styles = [];
@@ -16,13 +15,7 @@ export default function renderHtml (store, renderProps) {
       ${styles.join('')}
     </head>
     <body>
-      <div id="root"><div>${
-        React.renderToString(
-          <Provider store={store}>
-            {() => <RoutingContext {...renderProps}/>}
-          </Provider>
-        )
-      }</div></div>
+      <div id="root">${renderApp(store, renderProps)}</div>
       <script>window.__INITIAL_STATE__ = ${dehydrateState(store.getState())};</script>
       <script src="index.js"></script>
     </body>
