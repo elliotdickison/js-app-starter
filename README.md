@@ -11,8 +11,7 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 1. Clone the repo
 2. `cd` into the repo base directory
 3. Run `npm install` to install dependencies
-4. Run `npm run build:dev` to build assets for development
-5. Run `npm run start:dev` to start a server w/ hot module replacement
+4. Run `npm run dev` to build and run in development mode
 
 # Features
 

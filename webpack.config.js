@@ -1,20 +1,28 @@
 var webpack = require('webpack');
 var path = require('path');
 var merge = require('webpack-merge');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var commonConfig = {
-  entry: [
-    path.resolve(__dirname, 'src/client.js')
-  ],
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
-  },
-};
+var __DEVELOPMENT__ = process.env.NODE_ENV === 'development';
 
-if (process.env.NODE_ENV === 'development') {
-  module.exports = merge(commonConfig, {
+function getCommonConfig () {
+  return {
+    entry: [
+      path.resolve(__dirname, 'src/client.js'),
+    ],
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'index.js',
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        __DEVELOPMENT__: __DEVELOPMENT__,
+      }),
+    ],
+  };
+}
+
+function getDevOnlyConfig () {
+  return {
     devtool: 'eval',
     entry: [
       'webpack-hot-middleware/client',
@@ -55,13 +63,13 @@ if (process.env.NODE_ENV === 'development') {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
-      new webpack.DefinePlugin({
-        __DEVELOPMENT__: true,
-      }),
     ],
-  });
-} else {
-  module.exports = merge(commonConfig, {
+  };
+}
+
+function getProdOnlyConfig () {
+  var ExtractTextPlugin = require('extract-text-webpack-plugin');
+  return {
     devtool: 'source-map',
     module: {
       loaders: [
@@ -83,9 +91,8 @@ if (process.env.NODE_ENV === 'development') {
           warnings: false,
         },
       }),
-      new webpack.DefinePlugin({
-        __DEVELOPMENT__: false,
-      }),
     ],
-  });
+  };
 }
+
+module.exports = merge(getCommonConfig(), __DEVELOPMENT__ ? getDevOnlyConfig() : getProdOnlyConfig());
