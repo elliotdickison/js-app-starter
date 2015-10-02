@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { dehydrateState } from './state';
-import renderApp from './render-app';
+import App from '../components/app';
 
 export default function renderHtml (store, routerProps) {
   let styles = [];
@@ -21,7 +21,7 @@ export default function renderHtml (store, routerProps) {
       ${styles.join('')}
     </head>
     <body>
-      <div id="root">${renderApp(store, routerProps)}</div>
+      <div id="root">${React.renderToString(<App store={store} routerProps={routerProps} />)}</div>
       <script>window.__INITIAL_STATE__ = ${dehydrateState(store.getState())};</script>
       <script src="index.js"></script>
     </body>

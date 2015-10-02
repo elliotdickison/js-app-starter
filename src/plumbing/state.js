@@ -10,9 +10,5 @@ export function dehydrateState (state) {
 }
 
 export function hydrateState (state) {
-    let hydratedState = {};
-    Object.getOwnPropertyNames(state).forEach( (prop) => {
-        hydratedState[prop] = Immutable.fromJS(state[prop]);
-    });
-    return hydratedState;
+    return Immutable.fromJS(state);
 }

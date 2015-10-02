@@ -16,7 +16,7 @@ import WidgetListItem from './widget-list-item';
 
 function mapStateToProps(state) {
   return {
-    widgets: state.widgets,
+    widgets: state.get('widgets'),
   };
 }
 
@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
 
 function fetchWidgets (store) {
   let state = store.getState();
-  if (!state.widgets.get('loaded') && !state.widgets.get('loading')) {
+  if (!state.get('widgets').get('loaded') && !state.get('widgets').get('loading')) {
     return store.dispatch(actions.load());
   }
 }

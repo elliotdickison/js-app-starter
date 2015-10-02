@@ -6,14 +6,26 @@
  * @module
  */
 
-import { compose, createStore as createReduxStore, applyMiddleware, combineReducers } from 'redux';
+import { compose, createStore as createReduxStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import Immutable from 'immutable';
+import { Map } from 'immutable';
 import widgets from '../modules/widgets';
 
-const rootReducer = combineReducers({
-    widgets
-});
+const emptyState = Map();
+
+function applyReducers (reducers, state = emptyState, action = {}) {
+  return Map(Object.keys(reducers).reduce((result, key) => {
+    result[key] = reducers[key](state.get(key), action);
+    return result;
+  }, {}));
+}
+
+function combineImmutableReducers (reducers) {
+  var defaultState = applyReducers(reducers);
+  return function combination (state = defaultState, action = {}) {
+    return applyReducers(reducers, state, action);
+  }
+}
 
 function getMiddleware () {
   let middleware = [applyMiddleware(thunk)];
@@ -26,6 +38,9 @@ function getMiddleware () {
 }
 
 export default function createStore (initialState) {
+  const rootReducer = combineImmutableReducers({
+    widgets
+  });
   const createStoreWithMiddleware = compose.apply(null, getMiddleware())(createReduxStore);
   return createStoreWithMiddleware(rootReducer, initialState);
 }
