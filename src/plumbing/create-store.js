@@ -1,4 +1,12 @@
-import { compose, createStore, applyMiddleware, combineReducers } from 'redux';
+/**
+ * Creates a redux store with the correct middleware for the current environment
+ * (e.g. dev tooling middleware is included in development only). The store can
+ * be seeded by passing in an initial state object (helpful for rehydrating a
+ * server-rendered app on the client).
+ * @module
+ */
+
+import { compose, createStore as createReduxStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import Immutable from 'immutable';
 import widgets from '../modules/widgets';
@@ -18,6 +26,6 @@ function getMiddleware () {
 }
 
 export default function createStore (initialState) {
-  const createStoreWithMiddleware = compose.apply(null, getMiddleware())(createStore);
+  const createStoreWithMiddleware = compose.apply(null, getMiddleware())(createReduxStore);
   return createStoreWithMiddleware(rootReducer, initialState);
 }

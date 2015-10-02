@@ -1,3 +1,13 @@
+/**
+ * Renders the main react application given a redux store, router props, and
+ * optionally a set of routes. If routes are provided it is assumed that no
+ * routing has occurred yet and the current route will be evaluated client-side.
+ * If no routes are provided it is assumed that routing has already occurred
+ * (server-side) and that the router props contain all the necessary information
+ * needed to render the current route.
+ * @module
+ */
+
 import React from 'react';
 import { Provider } from 'react-redux';
 import Router, { RoutingContext } from 'react-router';

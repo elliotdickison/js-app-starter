@@ -1,3 +1,8 @@
+/**
+ * Configures an Express app for hot module replacement.
+ * @module
+ */
+
 import webpack from 'webpack';
 import webpackConfig from '../../webpack.config';
 import webpackDevMiddleware from 'webpack-dev-middleware';

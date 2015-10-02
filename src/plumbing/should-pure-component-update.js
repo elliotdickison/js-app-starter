@@ -1,3 +1,9 @@
+/**
+ * Provides a pure variation of React's shouldComponentUpdate function that
+ * works well with ImmutableJS.
+ * @module
+ */
+
 import Immutable from 'immutable';
 
 function isSame (thingOne, thingTwo) {

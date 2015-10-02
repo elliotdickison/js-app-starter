@@ -1,3 +1,8 @@
+/**
+ * The application routes (handled on both the client and the server).
+ * @module
+ */
+
 import React from 'react';
 import { Route } from 'react-router';
 import App from './components/app';

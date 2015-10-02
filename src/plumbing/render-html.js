@@ -1,8 +1,14 @@
+/**
+ * Renders the full html page given a redux store and router props. This is
+ * used server side only.
+ * @module
+ */
+
 import React from 'react';
 import { dehydrateState } from './state';
 import renderApp from './render-app';
 
-export default function renderHtml (store, renderProps) {
+export default function renderHtml (store, routerProps) {
   let styles = [];
   if (!__DEVELOPMENT__) {
     styles.push('<link rel="stylesheet" type="text/css" href="index.css" />');
@@ -15,7 +21,7 @@ export default function renderHtml (store, renderProps) {
       ${styles.join('')}
     </head>
     <body>
-      <div id="root">${renderApp(store, renderProps)}</div>
+      <div id="root">${renderApp(store, routerProps)}</div>
       <script>window.__INITIAL_STATE__ = ${dehydrateState(store.getState())};</script>
       <script src="index.js"></script>
     </body>

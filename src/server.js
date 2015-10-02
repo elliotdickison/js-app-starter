@@ -1,10 +1,15 @@
+/**
+ * The server-side entry point for the entire application.
+ * @module
+ */
+
 import Express from 'express';
 import createStore from './plumbing/create-store';
 import configureHmr from './plumbing/configure-hmr';
 import createLocation from 'history/lib/createLocation';
 import { match } from 'react-router';
 import routes from './routes';
-import { fetchDataForRoutes } from './plumbing/connect-route-data';
+import { fetchDataForRoutes } from './plumbing/require-data';
 import renderHtml from './plumbing/render-html';
 
 global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';

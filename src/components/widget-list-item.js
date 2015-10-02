@@ -1,3 +1,8 @@
+/**
+ * Represents one widget in a list.
+ * @module
+ */
+
 import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from '../plumbing/should-pure-component-update';
 

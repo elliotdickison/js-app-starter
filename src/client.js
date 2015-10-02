@@ -1,3 +1,8 @@
+/**
+ * The client-side entry point for the entire application.
+ * @module
+ */
+
 import 'babel-core/polyfill';
 import './styles/index.scss';
 import React from 'react';

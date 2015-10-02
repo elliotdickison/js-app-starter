@@ -1,3 +1,8 @@
+/**
+ * Provides utility functions for dealing with state.
+ * @module
+ */
+
 import Immutable from 'immutable';
 
 export function dehydrateState (state) {

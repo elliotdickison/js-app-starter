@@ -1,3 +1,12 @@
+/**
+ * A redux "duck" (see https://github.com/erikras/ducks-modular-redux). This
+ * contains the default values for state.widgets, all action creators that
+ * target state.widgets, and a reducer function that can apply each action to
+ * state.widgets. ImmutableJS is used to ensure that the state is not
+ * accidentally mutated.
+ * @module
+ */
+
 import Immutable, { Map, List } from 'immutable';
 
 const REQUEST_LOAD = 'widgets/request-load';
@@ -13,7 +22,7 @@ let initialState = Map({
   error: null,
 });
 
-export default function (state = initialState, action = {}) {
+export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
 
     case REQUEST_LOAD:

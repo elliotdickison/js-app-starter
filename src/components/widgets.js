@@ -1,6 +1,15 @@
+/**
+ * A list of all widgets. This is a "smart component", meaning that it's
+ * connected to redux, receiving state and bound action creators in the form of
+ * props. It's also a "container", meaning that a route is mapped directly to
+ * it. It uses the requireData decorator to specify data that should
+ * automatically be fetched (both on the server and client) when it is rendered.
+ * @module
+ */
+
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import connectRouteData from '../plumbing/connect-route-data';
+import requireData from '../plumbing/require-data';
 import { connect } from 'react-redux';
 import * as actions from '../modules/widgets';
 import WidgetListItem from './widget-list-item';
@@ -22,7 +31,7 @@ function fetchWidgets (store) {
   }
 }
 
-@connectRouteData(fetchWidgets)
+@requireData(fetchWidgets)
 @connect(mapStateToProps, mapDispatchToProps)
 class Widgets extends Component {
 

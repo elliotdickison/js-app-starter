@@ -1,3 +1,9 @@
+/**
+ * Provides utilites that allow a component to easily declare an automatically
+ * handled dependency on asynchronously fetched data. Whew, parse that.
+ * @module
+ */
+
 import React, { Component, PropTypes } from 'react';
 
 function getFetchDataFromRoute (route) {
@@ -15,7 +21,7 @@ export function fetchDataForRoutes (routes, store) {
     return Promise.all(getPromisesFromRoutes(routes, store));
 }
 
-export default function connectRouteData (fetchData) {
+export default function requireData (fetchData) {
   return function decorator(OriginalComponent) {
 
     class ComposedComponent extends Component {
