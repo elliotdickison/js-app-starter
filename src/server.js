@@ -1,5 +1,5 @@
 import Express from 'express';
-import configureStore from './plumbing/configure-store';
+import createStore from './plumbing/create-store';
 import configureHmr from './plumbing/configure-hmr';
 import createLocation from 'history/lib/createLocation';
 import { match } from 'react-router';
@@ -20,7 +20,7 @@ if (__DEVELOPMENT__) {
 app.use(Express.static('dist'));
 
 app.use( (req, res) => {
-  let store = configureStore();
+  let store = createStore();
   let location = createLocation(req.url);
   handleRoute(location, store)
     .then( (data) => {

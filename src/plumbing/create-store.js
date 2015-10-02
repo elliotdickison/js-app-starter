@@ -17,7 +17,7 @@ function getMiddleware () {
   return middleware;
 }
 
-export default function configureStore (initialState) {
+export default function createStore (initialState) {
   const createStoreWithMiddleware = compose.apply(null, getMiddleware())(createStore);
   return createStoreWithMiddleware(rootReducer, initialState);
 }
