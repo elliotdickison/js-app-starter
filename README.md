@@ -2,7 +2,7 @@
 
 # JavaScript Web App Starter Kit
 
-This is a boilerplate for universal react/redux JavaScript web applications. It's designed to be a lightweight starter kit for small or medium sized apps. [Relay](https://facebook.github.io/relay/) is probably a better choice for large, data intensive apps. The primary goals for this kit are full universal rendering (with async data fetching), immutable state, stateless views, and a fast development cycle &emdash; all with as few tools as possible. These features should ideally allow rapid bootstrapping of an elegant, powerful, easy-to-reason-about (i.e. super hip) JavaScript web application. This is written in JavaScript because I don't know ClojureScript yet.
+This is a boilerplate for universal react/redux JavaScript web applications. It's designed to be a lightweight starter kit for small or medium sized apps ([Relay](https://facebook.github.io/relay/) is probably a better choice for large, data intensive apps). The primary goals for this are: universal rendering (with async data fetching), immutable state, stateless views, and a fast development cycle – all with as few tools as possible. These features should ideally allow rapid bootstrapping of an elegant, powerful, and easy-to-reason-about (i.e. super hip) JavaScript web application. This is written in JavaScript because I don't know ClojureScript yet.
 
 # Features
 
