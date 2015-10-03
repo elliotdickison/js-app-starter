@@ -9,7 +9,7 @@ import configureHmr from './plumbing/configure-hmr';
 import createLocation from 'history/lib/createLocation';
 import { match } from 'react-router';
 import routes from './routes';
-import { fetchDataForRoutes } from './plumbing/require-data';
+import { fetchDataForComponents } from './plumbing/require-data';
 import renderHtml from './plumbing/render-html';
 
 global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
@@ -62,7 +62,7 @@ function handleRoute (location, store) {
           value: redirectLocation.pathname + redirectLocation.search,
         });
       } else {
-        fetchDataForRoutes(renderProps.components, store)
+        fetchDataForComponents(renderProps.components, store)
           .then( () => {
             return resolve({
               status: 200,

@@ -40,3 +40,4 @@ This is a starter kit for universal react/redux javascript web applications. Thi
 
 * Documentation (sheesh, why isn't this done already!?)
 * Track git hooks
+* Test click handler

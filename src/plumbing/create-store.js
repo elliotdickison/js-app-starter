@@ -12,8 +12,9 @@ import { Map } from 'immutable';
 import widgets from '../modules/widgets';
 
 const emptyState = Map();
+const emptyAction = {};
 
-function applyReducers (reducers, state = emptyState, action = {}) {
+function applyReducers (reducers, state = emptyState, action = emptyAction) {
   return Map(Object.keys(reducers).reduce((result, key) => {
     result[key] = reducers[key](state.get(key), action);
     return result;
@@ -22,7 +23,7 @@ function applyReducers (reducers, state = emptyState, action = {}) {
 
 function combineImmutableReducers (reducers) {
   var defaultState = applyReducers(reducers);
-  return function combination (state = defaultState, action = {}) {
+  return function combination (state = defaultState, action = emptyAction) {
     return applyReducers(reducers, state, action);
   }
 }
