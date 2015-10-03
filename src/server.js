@@ -12,6 +12,7 @@ import routes from './routes';
 import { fetchDataForComponents } from './plumbing/require-data';
 import renderHtml from './plumbing/render-html';
 
+global.__CLIENT__ = false;
 global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
 
 let port = process.env.PORT || 3000;

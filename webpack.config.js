@@ -15,6 +15,7 @@ function getCommonConfig () {
     },
     plugins: [
       new webpack.DefinePlugin({
+        __CLIENT__: true,
         __DEVELOPMENT__: __DEVELOPMENT__,
       }),
     ],

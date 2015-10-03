@@ -30,7 +30,7 @@ function combineImmutableReducers (reducers) {
 
 function getMiddleware () {
   let middleware = [applyMiddleware(thunk)];
-  if (__DEVELOPMENT__) {
+  if (__DEVELOPMENT__ && __CLIENT__) {
     const { devTools, persistState } = require('redux-devtools');
     middleware.push(devTools());
     middleware.push(persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)));

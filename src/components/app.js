@@ -23,11 +23,11 @@ class App extends Component {
   render () {
 
     let devTools = null;
-    if (__DEVELOPMENT__) {
+    if (__DEVELOPMENT__ && __CLIENT__) {
       const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
       devTools = (
         <DebugPanel top right bottom key="debugPanel">
-          <DevTools store={this.props.store} monitor={LogMonitor}/>
+          <DevTools store={this.props.store} monitor={LogMonitor} visibleOnLoad={false} />
         </DebugPanel>
       );
     }

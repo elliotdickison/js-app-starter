@@ -36,7 +36,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "NODE_ENV=development npm run build && npm run start",
+    "dev": "NODE_ENV=development npm run build && NODE_ENV=development npm run start",
     "lint": "eslint src test --ext .js",
     "start": "node -r babel-core/register src/server",
     "test": "node -r babel-core/register test/**/*.js"
