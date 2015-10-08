@@ -81,7 +81,7 @@ function isEqual (thingOne, thingTwo, depth) {
  * @returns {Function} shouldComponentUpdate-style equality check
  */
 export default function getPureRenderFunction (equalityDepth = 1) {
-  return (nextProps, nextState) => {
-    !isEqual(this.props, nextProps, equalityDepth) || !isEqual(this.state, nextState, equalityDepth);
+  return function (nextProps, nextState) {
+    return !isEqual(this.props, nextProps, equalityDepth) || !isEqual(this.state, nextState, equalityDepth);
   };
 }
