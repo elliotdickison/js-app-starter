@@ -12,16 +12,14 @@ import { match } from 'react-router';
 import routes from './routes';
 import { fetchDataForComponents } from './plumbing/require-data';
 import renderHtml from './plumbing/render-html';
+import { buildAppConfigIntoGlobals } from './plumbing/build-app-config';
 
-// Define the same globals that are set client-side by webpack.DefinePlugin
-global.__CLIENT__ = false;
-global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
+buildAppConfigIntoGlobals({ client: false });
 
 let port = process.env.PORT || 3000;
 
 let app = new Express();
 
-// Setup hot module replacement when in development mode
 if (__DEVELOPMENT__) {
   configureHmr(app);
 }
@@ -42,7 +40,6 @@ app.use( (req, res) => {
     });
 });
 
-// Boot it up
 app.listen(port, (error) => {
   if (error) {
     console.error(error);

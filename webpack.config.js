@@ -1,8 +1,9 @@
+require('babel-core/register');
 var webpack = require('webpack');
 var path = require('path');
 var merge = require('webpack-merge');
-
-var __DEVELOPMENT__ = process.env.NODE_ENV === 'development';
+var buildAppConfig = require('./src/plumbing/build-app-config');
+var appConfig = buildAppConfig.default({ client: true });
 
 function getCommonConfig () {
   return {
@@ -14,10 +15,7 @@ function getCommonConfig () {
       filename: 'index.js',
     },
     plugins: [
-      new webpack.DefinePlugin({
-        __CLIENT__: true,
-        __DEVELOPMENT__: __DEVELOPMENT__,
-      }),
+      new webpack.DefinePlugin(appConfig),
     ],
   };
 }
@@ -96,4 +94,4 @@ function getProdOnlyConfig () {
   };
 }
 
-module.exports = merge(getCommonConfig(), __DEVELOPMENT__ ? getDevOnlyConfig() : getProdOnlyConfig());
+module.exports = merge(getCommonConfig(), appConfig.__DEVELOPMENT__ ? getDevOnlyConfig() : getProdOnlyConfig());
