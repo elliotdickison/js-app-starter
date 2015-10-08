@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import { dehydrateState } from './state';
 import App from '../components/app';
 
 /**
@@ -32,7 +31,7 @@ export default function renderHtml (store, routerProps) {
     </head>
     <body>
       <div id="root">${React.renderToString(<App store={store} routerProps={routerProps} />)}</div>
-      <script>window.__INITIAL_STATE__ = ${dehydrateState(store.getState())};</script>
+      <script>window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())};</script>
       <script src="index.js"></script>
     </body>
     </html>`;
