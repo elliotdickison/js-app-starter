@@ -3,6 +3,7 @@
  * (e.g. dev tooling middleware is included in development only). The store can
  * be seeded by passing in an initial state object (helpful for rehydrating a
  * server-rendered app on the client).
+ *
  * @module
  */
 
@@ -14,6 +15,17 @@ import widgets from '../modules/widgets';
 const emptyState = Map();
 const emptyAction = {};
 
+/**
+ * Applys an action to the state using a group of reducers
+ *
+ * @param {Object} An object of reducers keyed to the same state keys that the
+ * reducers apply to
+ * @param {Object} [state=emptyState] The current ImmutableJS state object
+ * @param {Object} [action=emptyAction] The action to apply to the state
+ *
+ * @returns {Function} A mega-reducer that can be used to easily apply all the
+ * individual reducers
+ */
 function applyReducers (reducers, state = emptyState, action = emptyAction) {
   return Map(Object.keys(reducers).reduce((result, key) => {
     result[key] = reducers[key](state.get(key), action);
@@ -21,6 +33,15 @@ function applyReducers (reducers, state = emptyState, action = emptyAction) {
   }, {}));
 }
 
+/**
+ * Takes a group of reducers and combines them into a single reducer
+ *
+ * @param {Object} An object of reducers keyed to the state keys that the
+ * reducers apply to
+ *
+ * @returns {Function} A mega-reducer that can be used to easily run all of the
+ * individual reducers
+ */
 function combineImmutableReducers (reducers) {
   var defaultState = applyReducers(reducers);
   return function combination (state = defaultState, action = emptyAction) {
@@ -28,6 +49,11 @@ function combineImmutableReducers (reducers) {
   }
 }
 
+/**
+ * Builds and returns an array of middleware to be applied to the Redux store
+ *
+ * @returns {Function[]} An array of middleware
+ */
 function getMiddleware () {
   let middleware = [applyMiddleware(thunk)];
   if (__DEVELOPMENT__ && __CLIENT__) {
@@ -38,6 +64,14 @@ function getMiddleware () {
   return middleware;
 }
 
+/**
+ * Builds and returns a Redux store instance
+ *
+ * @param {Object} [initialState] An ImmutableJS state object to seed the store
+ * with
+ *
+ * @returns {Object} A Redux store
+ */
 export default function createStore (initialState) {
   const rootReducer = combineImmutableReducers({
     widgets

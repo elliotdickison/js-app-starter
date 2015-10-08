@@ -1,10 +1,11 @@
 /**
  * Represents one widget in a list.
+ *
  * @module
  */
 
 import React, { Component, PropTypes } from 'react';
-import shouldPureComponentUpdate from '../plumbing/should-pure-component-update';
+import getPureRenderFunction from '../plumbing/get-pure-render-function';
 
 class WidgetListItem extends Component {
 
@@ -14,7 +15,7 @@ class WidgetListItem extends Component {
     destroy: PropTypes.func.isRequired,
   }
 
-  shouldComponentUpdate = shouldPureComponentUpdate
+  shouldComponentUpdate = getPureRenderFunction()
 
   onDestroyWidgetClick () {
     this.props.destroy(this.props.index);

@@ -1,5 +1,6 @@
 /**
  * The client-side entry point for the entire application.
+ *
  * @module
  */
 

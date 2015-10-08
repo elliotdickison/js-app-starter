@@ -1,5 +1,6 @@
 /**
  * Application chrome
+ *
  * @module
  */
 

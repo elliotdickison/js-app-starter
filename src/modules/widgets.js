@@ -4,6 +4,7 @@
  * target state.widgets, and a reducer function that can apply each action to
  * state.widgets. ImmutableJS is used to ensure that the state is not
  * accidentally mutated.
+ *
  * @module
  */
 

@@ -33,3 +33,7 @@ This is a boilerplate for universal react/redux JavaScript web applications. It'
 
 ## Test
 * [Tape](https://github.com/substack/tape) - Simple dom-less testing that implements the transcendent Test Anything Protocol.
+
+# TODO
+* Upgrade to React 0.14
+* Look into redux-react-router (get the route state into the main app state)

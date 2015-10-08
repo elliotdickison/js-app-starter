@@ -1,5 +1,6 @@
 /**
  * The application routes (handled on both the client and the server).
+ *
  * @module
  */
 

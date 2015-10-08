@@ -5,6 +5,7 @@
  * If no routes are provided it is assumed that routing has already occurred
  * (server-side) and that the router props contain all the necessary information
  * needed to render the current route.
+ *
  * @module
  */
 

@@ -1,6 +1,7 @@
 /**
  * The landing/home/front page. This is a "container", meaning that a route is
  * mapped directly to it.
+ *
  * @module
  */
 

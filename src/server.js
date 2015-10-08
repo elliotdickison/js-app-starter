@@ -1,5 +1,6 @@
 /**
  * The server-side entry point for the entire application.
+ *
  * @module
  */
 
@@ -12,6 +13,7 @@ import routes from './routes';
 import { fetchDataForComponents } from './plumbing/require-data';
 import renderHtml from './plumbing/render-html';
 
+// Define the same globals that are set client-side by webpack.DefinePlugin
 global.__CLIENT__ = false;
 global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
 
@@ -19,12 +21,15 @@ let port = process.env.PORT || 3000;
 
 let app = new Express();
 
+// Setup hot module replacement when in development mode
 if (__DEVELOPMENT__) {
   configureHmr(app);
 }
 
+// Set "dist" as the public folder from which static assets are accessible
 app.use(Express.static('dist'));
 
+// Catch all other requests and handle them with ReactRouter
 app.use( (req, res) => {
   let store = createStore();
   let location = createLocation(req.url);
@@ -37,6 +42,7 @@ app.use( (req, res) => {
     });
 });
 
+// Boot it up
 app.listen(port, (error) => {
   if (error) {
     console.error(error);
@@ -45,6 +51,16 @@ app.listen(port, (error) => {
   }
 });
 
+/**
+ * Match the requested route, fetch data for it, and render the final html
+ *
+ * @param {Object} The current location (obtained via history/createLocation)
+ * @param {Object} The Redux store
+ *
+ * @returns {Object} A promise that may reject with an error message or resolve
+ * to an object containing a status code, method (e.g. send or redirect), and a
+ * value (e.g. the response body or the redirect location)
+ */
 function handleRoute (location, store) {
   return new Promise( (resolve, reject) => {
     match({ routes, location }, (error, redirectLocation, renderProps) => {

@@ -4,6 +4,7 @@
  * props. It's also a "container", meaning that a route is mapped directly to
  * it. It uses the requireData decorator to specify data that should
  * automatically be fetched (both on the server and client) when it is rendered.
+ *
  * @module
  */
 

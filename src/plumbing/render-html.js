@@ -1,6 +1,7 @@
 /**
  * Renders the full html page given a redux store and router props. This is
  * used server side only.
+ *
  * @module
  */
 
@@ -8,6 +9,15 @@ import React from 'react';
 import { dehydrateState } from './state';
 import App from '../components/app';
 
+/**
+ * Renders a full html page that includes doctype, html, head, and body tags as
+ * well as the app itself
+ *
+ * @param {Object} The Redux store
+ * @param {Object} Props to pass to ReactRouter
+ *
+ * @returns {String} The rendered html
+ */
 export default function renderHtml (store, routerProps) {
   let styles = [];
   if (!__DEVELOPMENT__) {
