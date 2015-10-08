@@ -1,8 +1,8 @@
 /**
  * Creates a redux store with the correct middleware for the current environment
- * (e.g. dev tooling middleware is included in development only). The store can
- * be seeded by passing in an initial state object (helpful for rehydrating a
- * server-rendered app on the client).
+ * (e.g. dev tooling middleware is included in development only). Implements a
+ * custom reducer combination technique that allows the application state to be
+ * an ImmutableJS object instead of a plain javascript object.
  *
  * @module
  */
@@ -68,7 +68,6 @@ function getMiddleware () {
  * Builds and returns a Redux store instance
  *
  * @param {Object} [initialState] An ImmutableJS state object to seed the store
- * with
  *
  * @returns {Object} A Redux store
  */
