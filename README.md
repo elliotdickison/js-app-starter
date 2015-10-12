@@ -4,7 +4,7 @@
 
 # JavaScript Web App Starter Kit
 
-This is a boilerplate for universal react/redux JavaScript web applications. It's designed to be a lightweight starter kit for small or medium sized apps ([Relay](https://facebook.github.io/relay/) is probably a better choice for large, data intensive apps). The primary goals for this are: universal rendering (with async data fetching), immutable state, stateless views, and a fast development cycle – all with as few tools as possible. These features should ideally allow rapid bootstrapping of an elegant, powerful, and easy-to-reason-about (i.e. super hip) JavaScript web application. This is written in JavaScript because I don't know ClojureScript yet.
+This is a boilerplate for fully-functional universal react/redux JavaScript web applications. It's designed to be a lightweight starter kit for small or medium sized apps ([Relay](https://facebook.github.io/relay/) is probably a better choice for large, data intensive apps). The primary goals for this are: universal rendering (with async data fetching), immutable state, stateless views, and a fast development cycle – all with as few tools as possible. These features should ideally allow rapid bootstrapping of an elegant, powerful, and easy-to-reason-about (i.e. super hip) JavaScript web application. This is written in JavaScript because I don't know ClojureScript yet.
 
 # Features
 
@@ -22,20 +22,17 @@ This is a boilerplate for universal react/redux JavaScript web applications. It'
 
 # Technologies
 
-## App
-* [Babel](http://babeljs.io/) - ESNext everywhere!
-* [ImmutableJS](https://facebook.github.io/immutable-js/) - Forcing immutability is always better than relying on good intentions.
-* [Node](https://nodejs.org/) - The foundation.
-* [React](http://facebook.github.io/react/) - Views with unidirectional data flow.
-* [Redux](https://github.com/rackt/redux) - The trendiest (and best) state management library.
-
 ## Build
 * [Sass](http://sass-lang.com/) - Cause inline styles [just aren't there yet](https://medium.com/@jedwatson/how-do-we-make-styles-in-components-play-nicely-with-server-side-rendering-25de9ecb1b49).
 * [Webpack](https://webpack.github.io/) - Handles everything from building and preprocessing to minifying and concatenating. No need for a complicated chain of custom build tools.
 
-## Test
-* [Tape](https://github.com/substack/tape) - Simple dom-less testing that implements the transcendent Test Anything Protocol.
+## Run
+* [Babel](http://babeljs.io/) - ESNext everywhere!
+* [ImmutableJS](https://facebook.github.io/immutable-js/) - Forcing immutability is always better than relying on good intentions.
+* [Node](https://nodejs.org/) - JavaScript everywhere...
+* [React Router](https://github.com/rackt/react-router) - Handy dandy universal routing for react.
+* [React](http://facebook.github.io/react/) - Views with unidirectional data flow.
+* [Redux](https://github.com/rackt/redux) - The tiny, awesome state container.
 
-# TODO
-* Upgrade to React 0.14
-* Look into redux-react-router (get the route state into the main app state)
+## Test
+* [Tape](https://github.com/substack/tape) - Simple dom-less testing using the transcendent Test Anything Protocol.
