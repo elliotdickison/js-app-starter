@@ -33,18 +33,17 @@ class App extends Component {
       );
     }
 
+    let router = null;
+    if (this.props.routes) {
+      router = <Router {...this.props.routerProps}>{this.props.routes}</Router>;
+    } else {
+      router = <RoutingContext {...this.props.routerProps}/>;
+    }
+
     return (
       <div>
         <Provider store={this.props.store}>
-          {() => {
-            let router = null;
-            if (this.props.routes) {
-              router = <Router {...this.props.routerProps}>{this.props.routes}</Router>;
-            } else {
-              router = <RoutingContext {...this.props.routerProps}/>;
-            }
-            return router;
-          }}
+          {router}
         </Provider>
         {devTools}
       </div>

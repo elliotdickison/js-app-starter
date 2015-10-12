@@ -4,8 +4,8 @@
  * @module
  */
 
-import React from 'react/addons';
-let TestUtils = React.addons.TestUtils;
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 
 /**
  * Always returns null, handy for stubbing props that require functions

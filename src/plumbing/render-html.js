@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import ReactDomServer from 'react-dom/server';
 import App from '../components/app';
 
 /**
@@ -30,7 +31,7 @@ export default function renderHtml (store, routerProps) {
       ${styles.join('')}
     </head>
     <body>
-      <div id="root">${React.renderToString(<App store={store} routerProps={routerProps} />)}</div>
+      <div id="root">${ReactDomServer.renderToString(<App store={store} routerProps={routerProps} />)}</div>
       <script>window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())};</script>
       <script src="index.js"></script>
     </body>

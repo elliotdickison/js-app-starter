@@ -45,13 +45,13 @@ class Widgets extends Component {
 
   onBuildClick () {
     this.props.build({
-      name: this.refs.newWidgetName.getDOMNode().value,
+      name: this.refs.newWidgetName.value,
     });
   }
 
   onAsyncBuildClick () {
     this.props.asyncBuild({
-      name: this.refs.newWidgetName.getDOMNode().value,
+      name: this.refs.newWidgetName.value,
     });
   }
 

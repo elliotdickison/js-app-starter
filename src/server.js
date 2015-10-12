@@ -63,7 +63,7 @@ function handleRoute (location, store) {
     match({ routes, location }, (error, redirectLocation, renderProps) => {
       if (error) {
         reject(error);
-      } else if (renderProps === null) {
+      } else if (!renderProps) {
         resolve({
           status: 404,
           method: 'send',

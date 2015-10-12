@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/elliotdickison/js-app-starter.svg?branch=master)](https://travis-ci.org/elliotdickison/js-app-starter)
+[![Dependency Status](https://david-dm.org/elliotdickison/js-app-starter.svg)](https://david-dm.org/elliotdickison/js-app-starter)
+[![Dev Dependency Status](https://david-dm.org/elliotdickison/js-app-starter/dev-status.svg)](https://david-dm.org/elliotdickison/js-app-starter#info=devDependencies)
 
 # JavaScript Web App Starter Kit
 
@@ -26,9 +28,9 @@ This is a boilerplate for universal react/redux JavaScript web applications. It'
 * [Node](https://nodejs.org/) - The foundation.
 * [React](http://facebook.github.io/react/) - Views with unidirectional data flow.
 * [Redux](https://github.com/rackt/redux) - The trendiest (and best) state management library.
-* [Sass](http://sass-lang.com/) - Cause inline styles [just aren't there yet](https://medium.com/@jedwatson/how-do-we-make-styles-in-components-play-nicely-with-server-side-rendering-25de9ecb1b49).
 
 ## Build
+* [Sass](http://sass-lang.com/) - Cause inline styles [just aren't there yet](https://medium.com/@jedwatson/how-do-we-make-styles-in-components-play-nicely-with-server-side-rendering-25de9ecb1b49).
 * [Webpack](https://webpack.github.io/) - Handles everything from building and preprocessing to minifying and concatenating. No need for a complicated chain of custom build tools.
 
 ## Test
