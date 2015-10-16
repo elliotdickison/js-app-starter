@@ -12,7 +12,7 @@ import thunk from 'redux-thunk';
 import { Map } from 'immutable';
 import widgets from '../modules/widgets';
 
-const emptyState = Map();
+const emptyState = new Map();
 const emptyAction = {};
 
 /**
@@ -27,7 +27,7 @@ const emptyAction = {};
  * individual reducers
  */
 function applyReducers (reducers, state = emptyState, action = emptyAction) {
-  return Map(Object.keys(reducers).reduce((result, key) => {
+  return new Map(Object.keys(reducers).reduce((result, key) => {
     result[key] = reducers[key](state.get(key), action);
     return result;
   }, {}));

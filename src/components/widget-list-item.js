@@ -12,13 +12,13 @@ class WidgetListItem extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
     widget: PropTypes.object.isRequired,
-    destroy: PropTypes.func.isRequired,
+    widgetDestroyed: PropTypes.func.isRequired,
   }
 
   shouldComponentUpdate = getPureRenderFunction()
 
   onDestroyWidgetClick () {
-    this.props.destroy(this.props.index);
+    this.props.widgetDestroyed(this.props.index);
   }
 
   render () {

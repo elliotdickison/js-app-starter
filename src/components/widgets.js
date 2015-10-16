@@ -28,7 +28,7 @@ function mapDispatchToProps(dispatch) {
 function fetchWidgets (store) {
   let state = store.getState();
   if (!state.get('widgets').get('loaded') && !state.get('widgets').get('loading')) {
-    return store.dispatch(actions.load());
+    return store.dispatch(actions.loadWidgets());
   }
 }
 
@@ -37,20 +37,13 @@ function fetchWidgets (store) {
 class Widgets extends Component {
 
   static propTypes = {
-    build: PropTypes.func.isRequired,
-    asyncBuild: PropTypes.func.isRequired,
-    destroy: PropTypes.func.isRequired,
+    buildWidget: PropTypes.func.isRequired,
+    widgetDestroyed: PropTypes.func.isRequired,
     widgets: PropTypes.object.isRequired,
   }
 
   onBuildClick () {
-    this.props.build({
-      name: this.refs.newWidgetName.value,
-    });
-  }
-
-  onAsyncBuildClick () {
-    this.props.asyncBuild({
+    this.props.buildWidget({
       name: this.refs.newWidgetName.value,
     });
   }
@@ -61,7 +54,7 @@ class Widgets extends Component {
 
   render () {
     let widgetListItems = this.props.widgets.get('data').map( (widget, index) => {
-      return <WidgetListItem key={index} widget={widget} index={index} destroy={this.props.destroy} />;
+      return <WidgetListItem key={index} widget={widget} index={index} widgetDestroyed={this.props.widgetDestroyed} />;
     });
     return (
       <ul>
@@ -69,7 +62,6 @@ class Widgets extends Component {
         <li>
           <input type="text" ref="newWidgetName" />
           <input type="button" value="Build" onClick={this.onBuildClick.bind(this)} />
-          <input type="button" value="Async Build" onClick={this.onAsyncBuildClick.bind(this)} />
         </li>
         <li>
           <input type="button" value="Reset" onClick={this.onResetClick.bind(this)} />

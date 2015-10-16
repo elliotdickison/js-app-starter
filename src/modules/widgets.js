@@ -10,13 +10,13 @@
 
 import Immutable, { Map, List } from 'immutable';
 
-const REQUEST_LOAD = 'widgets/request-load';
-const LOAD_SUCCESS = 'widgets/success';
-const LOAD_FAIL = 'widgets/load-fail';
-const BUILD = 'widgets/build';
-const DESTROY = 'widgets/destroy';
+const LOAD_REQUESTED = 'widgets/load-requested';
+const LOAD_SUCCEEDED = 'widgets/load-succeeded';
+const LOAD_FAILED = 'widgets/load-failed';
+const WIDGET_BUILT = 'widgets/widget-build';
+const WIDGET_DESTROYED = 'widgets/widget-destroyed';
 
-let initialState = Map({
+let initialState = new Map({
   loaded: false,
   loading: false,
   data: List(),
@@ -26,10 +26,10 @@ let initialState = Map({
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
 
-    case REQUEST_LOAD:
+    case LOAD_REQUESTED:
       return state.set('loading', true);
 
-    case LOAD_SUCCESS:
+    case LOAD_SUCCEEDED:
       return state.merge({
         loading: false,
         loaded: true,
@@ -37,17 +37,17 @@ export default function reducer (state = initialState, action = {}) {
         error: null,
       });
 
-    case LOAD_FAIL:
+    case LOAD_FAILED:
       return state.merge({
         loading: false,
         loaded: false,
         error: action.error,
       });
 
-    case BUILD:
+    case WIDGET_BUILT:
       return state.set('data', state.get('data').push(Immutable.fromJS(action.payload)));
 
-    case DESTROY:
+    case WIDGET_DESTROYED:
       return state.set('data', state.get('data').delete(action.payload));
 
     default:
@@ -55,74 +55,66 @@ export default function reducer (state = initialState, action = {}) {
   }
 }
 
-export function requestLoad () {
+export function loadRequested () {
   return {
-    type: REQUEST_LOAD,
+    type: LOAD_REQUESTED,
   };
 }
 
-export function loadSuccess (data) {
+export function loadSucceeded (data) {
   return {
-    type: LOAD_SUCCESS,
+    type: LOAD_SUCCEEDED,
     payload: data,
   };
 }
 
-export function loadFail (error) {
+export function loadFailed (error) {
   return {
-    type: LOAD_FAIL,
+    type: LOAD_FAILED,
     error: error,
   }
 }
 
-export function load () {
-  return (dispatch) => {
-    dispatch(requestLoad());
-    return fetchAllWidgets()
-      .then( (data) => {
-        dispatch(loadSuccess(data));
-      })
-      .catch( (error) => {
-        dispatch(loadFail(error));
-      });
-  };
-}
-
-export function build (data) {
+export function widgetBuilt (data) {
   return {
-    type: BUILD,
+    type: WIDGET_BUILT,
     payload: data
   };
 }
 
-export function asyncBuild (data) {
-  return (dispatch) => {
-    return buildWidget(data)
-      .then( (data) => {
-        dispatch(build(data));
-      });
-  };
-}
-
-export function destroy (index) {
+export function widgetDestroyed (index) {
   return {
-    type: DESTROY,
+    type: WIDGET_DESTROYED,
     payload: index
   };
 }
 
-function fetchAllWidgets () {
-  return new Promise( (resolve, reject) => {
-    setTimeout( () => {
-      resolve([{ name: 'one' }, { name: 'two' }]);
-    }, 500);
-  });
+export function loadWidgets () {
+  return (dispatch) => {
+    dispatch(loadRequested());
+    return new Promise( (resolve, reject) => {
+        setTimeout( () => {
+          resolve([{ name: 'one' }, { name: 'two' }]);
+        }, 500);
+      })
+      .then( (data) => {
+        dispatch(loadSucceeded(data));
+      })
+      .catch( (error) => {
+        dispatch(loadFailed(error));
+      });
+  };
 }
 
-function buildWidget (data) {
-  return new Promise( (resolve, reject) => {
-    setTimeout( () => {
-      resolve(data);
-    }, 500);
-  });
+export function buildWidget (data) {
+  return (dispatch) => {
+    return new Promise( (resolve, reject) => {
+        setTimeout( () => {
+          resolve(data);
+        }, 500);
+      })
+      .then( (data) => {
+        dispatch(widgetBuilt(data));
+      });
+  };
 }

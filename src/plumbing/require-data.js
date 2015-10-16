@@ -7,7 +7,7 @@
  * appropriate on the server or the client. Note that the function is not
  * necessarily called in the context of the component, so attempts to access the
  * component through "this" should be avoided. The data-fetching function should
- * obtain any necessary information from the application state via the store.
+ * obtain any necessary information from the application state.
  *
  * @module
  */
