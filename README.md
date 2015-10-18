@@ -14,15 +14,15 @@ Routing, data fetching, and view rendering is handled both on the server and the
 
 ## Immutable
 
-[Custom reducer code](https://github.com/elliotdickison/js-app-starter/blob/master/src/plumbing/create-store.js) works around Redux's current assumption that the state is a plain objection and allows it to be a single [ImmutableJS](https://facebook.github.io/immutable-js/) object (i.e. store.getState() returns an immutable object). React ensures that the UI is immutable as well (no custom DOM manipulations).
+Custom [reducer handling code](https://github.com/elliotdickison/js-app-starter/blob/master/src/plumbing/create-store.js) works around [Redux's current assumption](https://github.com/rackt/redux/blob/6b8a4a87d796cde00681528138ae3c2e71141fae/src/utils/combineReducers.js#L19) that the state is a plain objection and allows it to be a single [ImmutableJS](https://facebook.github.io/immutable-js/) object (i.e. store.getState() returns an immutable object). This allows for cleaner, more efficient reducer code and ensures that the state is not accidentally mutated. And of course React ensures that the UI is immutable (no custom DOM manipulations).
 
 ## Testable
 
-[Substack's Tape](https://github.com/substack/tape) library, which uses the tried-and-true Test Anything Protocol, is used as an all-in-one testing/assertion solution. The React test utils allow for [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) of components, meaning that individual components can be easily isolated and tested without the need for a DOM or complex mocking/stubbing.
+[Substack's Tape](https://github.com/substack/tape) library, which uses the tried-and-true Test Anything Protocol, is used as an all-in-one testing/assertion solution. React's Test Utils allow for [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) of components, meaning that individual components can be easily isolated and tested without the need for a DOM or complex mocking/stubbing.
 
 ## Developable
 
-All of the awesome dev tools from [Dan Abromov](https://github.com/gaearon/react-transform-boilerplate) are included when the app is run in development mode. This means: hot module replacement (auto-reloading of javascript and sass w/o browser refreshes), in-browser error display, and the redux dev tools (time travel, etc.).
+All of the awesome dev tools from [Dan Abromov](https://github.com/gaearon/react-transform-boilerplate) are included when the app is run in development mode. This means: hot module replacement (auto-reloading of javascript and sass w/o browser refreshes or lost state), in-browser error display, and the default redux dev tools (action logging, time travel, etc.).
 
 # Setup
 
