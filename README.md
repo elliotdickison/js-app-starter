@@ -8,10 +8,21 @@ This is a boilerplate for fully-functional universal react/redux JavaScript web 
 
 # Features
 
-* Universal - data fetching + view rendering on both sides of the fence
-* Immutable - state + UI
-* Testable - TAP with tape
-* Developable (?) - hot module replacement + in-browser error display + redux dev tools
+## Universal
+
+Routing, data fetching, and view rendering is handled both on the server and the client. This means that a new request will return a fully rendered app in the correct state, all before any client-side javascript has been run. When client-side javascript has been fetched and run, React hooks into the pre-rendered DOM and takes over (without the need for a full client-side re-render). [React Router](https://github.com/rackt/react-router) is used to match routes on the server as well as handle dynamic routing on the client. An [ES2016 decorator](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841) is used to attach static data-fetching methods to any react components that require remote data. These methods are automatically called server-side for every component in the matched route. They are automatically called client-side on componentDidMount. View rendering is handled entirely by React ([ReactDomServer.renderToString](https://facebook.github.io/react/docs/top-level-api.html#reactdomserver.rendertostring) on the server, and [ReactDom.render](https://facebook.github.io/react/docs/top-level-api.html#reactdom.render) on the client).
+
+## Immutable
+
+[Custom reducer code](https://github.com/elliotdickison/js-app-starter/blob/master/src/plumbing/create-store.js) works around Redux's current assumption that the state is a plain objection and allows it to be a single [ImmutableJS](https://facebook.github.io/immutable-js/) object (i.e. store.getState() returns an immutable object). React ensures that the UI is immutable as well (no custom DOM manipulations).
+
+## Testable
+
+[Substack's Tape](https://github.com/substack/tape) library, which uses the tried-and-true Test Anything Protocol, is used as an all-in-one testing/assertion solution. The React test utils allow for [shallow rendering](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) of components, meaning that individual components can be easily isolated and tested without the need for a DOM or complex mocking/stubbing.
+
+## Developable
+
+All of the awesome dev tools from [Dan Abromov](https://github.com/gaearon/react-transform-boilerplate) are included when the app is run in development mode. This means: hot module replacement (auto-reloading of javascript and sass w/o browser refreshes), in-browser error display, and the redux dev tools (time travel, etc.).
 
 # Setup
 

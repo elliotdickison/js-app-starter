@@ -38,7 +38,8 @@ class Widgets extends Component {
 
   static propTypes = {
     buildWidget: PropTypes.func.isRequired,
-    widgetDestroyed: PropTypes.func.isRequired,
+    destroyWidget: PropTypes.func.isRequired,
+    loadWidgets: PropTypes.func.isRequired,
     widgets: PropTypes.object.isRequired,
   }
 
@@ -49,12 +50,12 @@ class Widgets extends Component {
   }
 
   onResetClick () {
-    this.props.load();
+    this.props.loadWidgets();
   }
 
   render () {
     let widgetListItems = this.props.widgets.get('data').map( (widget, index) => {
-      return <WidgetListItem key={index} widget={widget} index={index} widgetDestroyed={this.props.widgetDestroyed} />;
+      return <WidgetListItem key={index} widget={widget} index={index} destroyWidget={this.props.destroyWidget} />;
     });
     return (
       <ul>

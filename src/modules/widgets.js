@@ -13,7 +13,7 @@ import Immutable, { Map, List } from 'immutable';
 const LOAD_REQUESTED = 'widgets/load-requested';
 const LOAD_SUCCEEDED = 'widgets/load-succeeded';
 const LOAD_FAILED = 'widgets/load-failed';
-const WIDGET_BUILT = 'widgets/widget-build';
+const WIDGET_BUILT = 'widgets/widget-built';
 const WIDGET_DESTROYED = 'widgets/widget-destroyed';
 
 let initialState = new Map({
@@ -22,6 +22,10 @@ let initialState = new Map({
   data: List(),
   error: null,
 });
+
+/**
+ * Reducer
+ */
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
@@ -55,44 +59,53 @@ export default function reducer (state = initialState, action = {}) {
   }
 }
 
-export function loadRequested () {
+/**
+ * Events (action creators)
+ */
+
+function loadRequested () {
   return {
     type: LOAD_REQUESTED,
   };
 }
 
-export function loadSucceeded (data) {
+function loadSucceeded (data) {
   return {
     type: LOAD_SUCCEEDED,
     payload: data,
   };
 }
 
-export function loadFailed (error) {
+function loadFailed (error) {
   return {
     type: LOAD_FAILED,
     error: error,
   }
 }
 
-export function widgetBuilt (data) {
+function widgetBuilt (data) {
   return {
     type: WIDGET_BUILT,
     payload: data
   };
 }
 
-export function widgetDestroyed (index) {
+function widgetDestroyed (index) {
   return {
     type: WIDGET_DESTROYED,
     payload: index
   };
 }
 
+/**
+ * Actions
+ */
+
 export function loadWidgets () {
   return (dispatch) => {
     dispatch(loadRequested());
     return new Promise( (resolve, reject) => {
+        // An API call would go here
         setTimeout( () => {
           resolve([{ name: 'one' }, { name: 'two' }]);
         }, 500);
@@ -109,12 +122,23 @@ export function loadWidgets () {
 export function buildWidget (data) {
   return (dispatch) => {
     return new Promise( (resolve, reject) => {
-        setTimeout( () => {
-          resolve(data);
-        }, 500);
+        // An API call would go here
+        resolve(data);
       })
       .then( (data) => {
         dispatch(widgetBuilt(data));
+      });
+  };
+}
+
+export function destroyWidget (index) {
+  return (dispatch) => {
+    return new Promise( (resolve, reject) => {
+        // An API call would go here
+        resolve(index);
+      })
+      .then( (index) => {
+        dispatch(widgetDestroyed(index));
       });
   };
 }

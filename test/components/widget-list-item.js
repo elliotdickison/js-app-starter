@@ -11,7 +11,7 @@ test('WidgetListItem component', function(t){
     widget: Map({
       name: 'I be in the town all day',
     }),
-    widgetDestroyed: (index) => {
+    destroyWidget: (index) => {
       t.equal(index, 0, 'The widget index is passed to the destroy click handler')
     },
   };

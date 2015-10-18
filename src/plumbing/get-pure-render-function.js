@@ -1,6 +1,7 @@
 /**
  * Provides a generator for pure render functions that can be assigned to
- * React's shouldComponentUpdate
+ * React's shouldComponentUpdate. This is mostly ripped from
+ * https://github.com/gaearon/react-pure-render.
  *
  * @module
  */
