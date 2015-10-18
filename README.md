@@ -22,7 +22,7 @@ Custom [reducer handling code](https://github.com/elliotdickison/js-app-starter/
 
 ## Developable
 
-All of the awesome dev tools from [Dan Abromov](https://github.com/gaearon/react-transform-boilerplate) are included when the app is run in development mode. This means: hot module replacement (auto-reloading of javascript and sass w/o browser refreshes or lost state), in-browser error display, and the default redux dev tools (action logging, time travel, etc.).
+All of the awesome [dev tools from Mr. Abromov](https://github.com/gaearon/react-transform-boilerplate) are included when the app is run in development mode. This means: hot module replacement (auto-reloading of javascript and sass w/o browser refreshes or lost state), in-browser error display, and the default redux dev tools (action logging, time travel, etc.).
 
 # Setup
 
